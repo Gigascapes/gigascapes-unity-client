@@ -86,7 +86,7 @@ namespace Gigascapes.SignalProcessing
                 Sensors.Add(lidarData.Index, newSensor);
             }
             var sensor = Sensors[lidarData.Index];
-            var frameEntities = CalculateFrameEntities(lidarData);
+            var frameEntities = CalculateCalibrationEntities(lidarData);
 
             MatchAndUpdateCalibrationBlackList(sensor, frameEntities);
             return new CalibrationUpdate { Sensor = sensor, Entities = CalibrationInfo[sensor].BlackList.Cast<Entity>().ToArray(), Phase = CalibrationPhase };
@@ -101,8 +101,42 @@ namespace Gigascapes.SignalProcessing
             var frameEntities = CalculateFrameEntities(lidarData);
             ProcessFrameEntities(frameEntities);
 
-            //Debug.LogWarningFormat("Entities: {0}", string.Join("\n", Entities.Select(x => x.ToString()).ToArray()));
             return Entities.ToArray();
+        }
+
+        protected Entity[] CalculateCalibrationEntities(LidarOutput lidarData)
+        {
+            if (!Sensors.ContainsKey(lidarData.Index))
+            {
+                return Entities.ToArray();
+            }
+
+            var entities = new List<Entity>();
+
+            var sensor = Sensors[lidarData.Index];
+            var dataLength = lidarData.Data.Length;
+
+            for (var i = 0; i < dataLength; i++)
+            {
+                var beam = lidarData.Data[i];
+                if (beam.Quality < MinimumBeamQuality)
+                    continue;
+
+                var position = GetWorldPosition(sensor, beam);
+                var displacement = position - sensor.Location;
+
+                var radius = GroupingTolerance;
+                var normalizedPos = IsCalibrated ? GetNormalizedPosition(position, Left, Right, Front, Back) : position;
+
+                var newEntity = new Entity
+                {
+                    Position = normalizedPos,
+                    Radius = radius
+                };
+
+                entities.Add(newEntity);
+            }
+            return entities.ToArray();
         }
 
         protected Entity[] CalculateFrameEntities(LidarOutput lidarData)

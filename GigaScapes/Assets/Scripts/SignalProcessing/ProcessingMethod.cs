@@ -187,6 +187,8 @@ namespace Gigascapes.SignalProcessing
                 return;
             }
 
+            CalibrationInfo[sensor].BaselineCalibrationCount++;
+
             var calibrationInfo = CalibrationInfo[sensor];
             foreach (var frameEntity in frameEntities)
             {
