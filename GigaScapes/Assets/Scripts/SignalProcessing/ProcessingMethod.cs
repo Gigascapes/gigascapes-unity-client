@@ -20,26 +20,14 @@ namespace Gigascapes.SignalProcessing
 
     public class SensorCalibrationInfo
     {
-        public List<CalibrationEntity> Entities = new List<CalibrationEntity>();
         public List<CalibrationEntity> BlackList = new List<CalibrationEntity>();
         public int BaselineCalibrationCount;
-        public int CalibrationHitCount;
-        public Vector2 Point1 = Vector2.zero;
-        public Vector2 Point2 = Vector2.zero;
-        public Vector2 Point3 = Vector2.zero;
 
         public float BlackListConfidence(CalibrationEntity entity)
         {
             if (!BlackList.Contains(entity))
                 return 0f;
             return entity.Hits / (1f * BaselineCalibrationCount);
-        }
-
-        public float CalibrationConfidence(CalibrationEntity entity)
-        {
-            if (!Entities.Contains(entity))
-                return 0f;
-            return entity.Hits / (1f * CalibrationHitCount);
         }
     }
 
@@ -56,9 +44,6 @@ namespace Gigascapes.SignalProcessing
 
         [SerializeField, Range(0f, 1f)]
         protected float RequiredBlackListConfidence = 0.7f;
-
-        [SerializeField, Range(1, 50)]
-        protected int RequiredCalibrationPointHits = 10;
 
         public abstract Entity[] Process(ISensorOutput data);
         public abstract CalibrationUpdate Calibrate(ISensorOutput data);
@@ -80,22 +65,44 @@ namespace Gigascapes.SignalProcessing
 
 		public virtual void StartCalibration()
         {
-            CalibrationPhase = CalibrationPhase.BaselineEmpty;
+            CalibrationPhase = CalibrationPhase.Calibrating;
 
             Entities.Clear();
             CalibrationInfo.Clear();
             Sensors.Clear();
         }
 
-        public virtual void SetBaseline()
-        {
-            CalibrationPhase = CalibrationPhase.SearchingForPoint1;
-
-        }
-
         public virtual void FinishCalibration()
         {
             CalibrationPhase = CalibrationPhase.Calibrated;
+            RegisterBlackList();
+        }
+
+        protected void RegisterBlackList()
+        {
+            foreach (var info in CalibrationInfo.Values)
+            {
+                foreach (var blackEntity in info.BlackList)
+                {
+                    if (info.BlackListConfidence(blackEntity) >= RequiredBlackListConfidence)
+                    {
+                        TryRegisterNewBlackEntity(blackEntity);
+                    }
+                }
+            }
+        }
+
+        void TryRegisterNewBlackEntity(Entity blackEntity)
+        {
+            if (!EntityMatchInBlackList(blackEntity))
+            {
+                BlackList.Add(blackEntity);
+            }
+        }
+
+        protected bool EntityMatchInBlackList(Entity entity)
+        {
+            return BlackList.Any(x => EntitiesMatch(entity, x));
         }
 
         protected void ProcessFrameEntities(Entity[] frameEntities)
@@ -200,102 +207,6 @@ namespace Gigascapes.SignalProcessing
                     calibrationInfo.BlackList.Add(new CalibrationEntity(frameEntity));
                 }
             }
-        }
-
-        protected void MatchAndUpdateCalibrationEntities(Sensor sensor, Entity[] frameEntities)
-        {
-            if (!CalibrationInfo.ContainsKey(sensor))
-            {
-                CalibrationInfo.Add(sensor, new SensorCalibrationInfo
-                {
-                    CalibrationHitCount = 1,
-                    Entities = frameEntities.Select(x => new CalibrationEntity(x)).ToList()
-                });
-                return;
-            }
-
-            var calibrationInfo = CalibrationInfo[sensor];
-            var entityMatches = new List<EntityMatch>();
-            var unclaimedEntities = new List<CalibrationEntity>();
-            unclaimedEntities.AddRange(calibrationInfo.Entities);
-            foreach (var frameEntity in frameEntities)
-            {
-                var matchFound = false;
-                foreach (var blackEntity in calibrationInfo.BlackList)
-                {
-                    if (EntitiesMatch(frameEntity, blackEntity))
-                    {
-                        Debug.LogError("Entity matches blacklisted entity");
-                        matchFound = true;
-                        break;
-                    }
-                }
-                if (matchFound)
-                {
-                    continue;
-                }
-
-                foreach (var entity in calibrationInfo.Entities)
-                {
-                    if (EntitiesMatch(frameEntity, entity))
-                    {
-                        matchFound = true;
-                        var newMatch = new EntityMatch { oldEntity = entity, newEntity = frameEntity };
-                        unclaimedEntities.Remove(entity);
-                        entityMatches.Add(newMatch);
-                        UpdateEntity(newMatch, 1f - Smoothing);
-                        entity.Hits++;
-                        Debug.LogWarningFormat("Found match with {0} hits", entity.Hits);
-                        if (entity.Hits >= RequiredCalibrationPointHits)
-                        {
-                            HandlePointFound(calibrationInfo, entity);
-                        }
-                        break;
-                    }
-                }
-
-                if (!matchFound)
-                {
-                    calibrationInfo.Entities.Add(new CalibrationEntity(frameEntity));
-                }
-            }
-
-            if (unclaimedEntities.Count > 0)
-                Debug.LogWarningFormat("Removing {0} unclaimed entities", unclaimedEntities.Count);
-    
-            foreach (var entity in unclaimedEntities)
-            {
-                calibrationInfo.Entities.Remove(entity);
-            }
-        }
-
-        void HandlePointFound(SensorCalibrationInfo info, Entity entity)
-        {
-            switch(CalibrationPhase)
-            {
-                case CalibrationPhase.SearchingForPoint1:
-                    info.Point1 = entity.SmoothedPosition;
-                    CalibrationPhase = CalibrationPhase.FoundPoint1;
-                    break;
-                case CalibrationPhase.SearchingForPoint2:
-                    info.Point2 = entity.SmoothedPosition;
-                    CalibrationPhase = CalibrationPhase.FoundPoint2;
-                    break;
-                case CalibrationPhase.SearchingForPoint3:
-                    info.Point3 = entity.SmoothedPosition;
-                    CalibrationPhase = CalibrationPhase.FoundPoint3;
-                    break;
-            }
-        }
-
-        protected void SetSensorLocations()
-        {
-            // TODO: Calculate position and angular offset of each sensor
-            Debug.LogWarning(string.Join("\n", CalibrationInfo.Select(x => string.Format("Sensor {6} --- 1:({0},{1}), 2:({2},{3}), 3:({4},{5})",
-                                                                                         x.Value.Point1.x, x.Value.Point1.y,
-                                                                                         x.Value.Point2.x, x.Value.Point2.y,
-                                                                                         x.Value.Point3.x, x.Value.Point3.y,
-                                                                                         x.Key.Index)).ToArray()));
         }
 
         protected List<EntityMatch> MatchAndUpdateFrameEntities(Entity[] frameEntities)

@@ -14,13 +14,18 @@ namespace Gigascapes.SystemDebug
         public Text CalibrationButtonText;
         public Text InstructionText;
 
-        bool ShowingPreCalibrationInstructions = false;
+        public delegate void CalibrationFinishedEvent();
+        public event CalibrationFinishedEvent OnCalibrationFinished;
 
 		void Start()
 		{
-            EndCalibration();
-            SignalProcessor.UpdateCalibration += HandleCalibrationUpdate;
+            SetInitial();
 		}
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) ProceedWithCalibration();
+        }
 
         public void ProceedWithCalibration()
         {
@@ -30,70 +35,42 @@ namespace Gigascapes.SystemDebug
                 case CalibrationPhase.Uncalibrated:
                     StartCalibration();
                     break;
-                case CalibrationPhase.BaselineEmpty:
-                    SetBaseline();
+                case CalibrationPhase.Calibrating:
+                    FinishCalibration();
                     break;
                 default:
-                    EndCalibration();
+                    FinishCalibration();
                     break;
             }
+        }
+
+        void SetInitial()
+        {
+            CalibrationButtonText.text = "Calibrate";
+            InstructionText.text = "System needs calibration";
         }
 
         void StartCalibration()
         {
-            if (ShowingPreCalibrationInstructions)
-            {
-                CalibrationButtonText.text = "Set Baseline";
-                InstructionText.text = "Calibrating...";
-                if (SignalProcessor != null)
-                {
-                    SignalProcessor.StartCalibration();
-                }
-            }
-            else
-            {
-                CalibrationButtonText.text = "Area clear";
-                InstructionText.text = "Clear play area";
-            }
-            ShowingPreCalibrationInstructions = !ShowingPreCalibrationInstructions;
-        }
-
-        void SetBaseline()
-        {
-            CalibrationButtonText.text = "Abort";
-            InstructionText.text = "Stand in center of play area";
+            CalibrationButtonText.text = "Area clear";
+            InstructionText.text = "Clear play area";
             if (SignalProcessor != null)
             {
-                SignalProcessor.SetBaseline();
+                SignalProcessor.StartCalibration();
             }
         }
 
-        void EndCalibration()
+        void FinishCalibration()
         {
+            CalibrationButtonText.text = "Calibrate";
+            InstructionText.text = "Calibrated";
+            if (OnCalibrationFinished != null)
+            {
+                OnCalibrationFinished();
+            }
             if (SignalProcessor != null)
             {
-                CalibrationButtonText.text = "Calibrate";
-                InstructionText.text = "";
-                SignalProcessor.EndCalibration();
-            }
-        }
-
-        void HandleCalibrationUpdate(CalibrationUpdate update)
-        {
-            switch (update.Phase)
-            {
-                case CalibrationPhase.SearchingForPoint1:
-                    InstructionText.text = "Stand in center of play area";
-                    break;
-                case CalibrationPhase.SearchingForPoint2:
-                    InstructionText.text = "Stand in front left of play area";
-                    break;
-                case CalibrationPhase.SearchingForPoint3:
-                    InstructionText.text = "Stand in back right of play area";
-                    break;
-                case CalibrationPhase.Calibrated:
-                    EndCalibration();
-                    break;
+                SignalProcessor.FinishCalibration();
             }
         }
     }   

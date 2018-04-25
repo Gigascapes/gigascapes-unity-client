@@ -20,11 +20,6 @@ namespace Gigascapes.SignalProcessing
         {
             return string.Format("(Pos: {0},{1}, Rad: {2}, Vel: {3},{4})", Position.x, Position.y, Radius, Velocity.x, Velocity.y);
         }
-
-        public void Update(Entity newEntity)
-        {
-            
-        }
     }
 
     public class CalibrationEntity : Entity
@@ -37,9 +32,9 @@ namespace Gigascapes.SignalProcessing
             Position = entity.Position;
             Velocity = entity.Velocity;
             Radius = entity.Radius;
-            SmoothedRadius = entity.SmoothedRadius;
-            SmoothedPosition = entity.SmoothedPosition;
-            SmoothedVelocity = entity.SmoothedVelocity;
+            SmoothedRadius = entity.Radius;
+            SmoothedPosition = entity.Position;
+            SmoothedVelocity = entity.Velocity;
             Hits = 1;
         }
     }
@@ -99,15 +94,7 @@ namespace Gigascapes.SignalProcessing
             }
         }
 
-        public void SetBaseline()
-        {
-            if (ProcessingMethod != null)
-            {
-                ProcessingMethod.SetBaseline();
-            }
-        }
-
-        public void EndCalibration()
+        public void FinishCalibration()
         {
             if (ProcessingMethod != null)
             {

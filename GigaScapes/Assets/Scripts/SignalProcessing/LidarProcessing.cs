@@ -19,13 +19,7 @@ namespace Gigascapes.SignalProcessing
     public enum CalibrationPhase
     {
         Uncalibrated,
-        BaselineEmpty,
-        SearchingForPoint1,
-        FoundPoint1,
-        SearchingForPoint2,
-        FoundPoint2,
-        SearchingForPoint3,
-        FoundPoint3,
+        Calibrating,
         Calibrated
     }
 
@@ -69,12 +63,16 @@ namespace Gigascapes.SignalProcessing
                         Direction = mockLidarData.Direction,
                         MaxDistanceObserved = mockLidarData.MaxRange,
                     });
-                    Left = mockLidarData.TopLeft.x;
-                    Right = mockLidarData.BottomRight.x;
-                    Front = mockLidarData.TopLeft.y;
-                    Back = mockLidarData.BottomRight.y;
-                    Debug.LogWarningFormat("Setting Left:{0}, Right:{1}, Front:{2}, Back{3}", Left, Right, Front, Back);
                 }
+                else
+                {
+                    Sensors[lidarData.Index].Location = mockLidarData.Location;
+                    Sensors[lidarData.Index].Direction = mockLidarData.Direction;
+                }
+                Left = mockLidarData.TopLeft.x;
+                Right = mockLidarData.BottomRight.x;
+                Front = mockLidarData.TopLeft.y;
+                Back = mockLidarData.BottomRight.y;
             }
 
             if (!Sensors.ContainsKey(lidarData.Index))
@@ -90,84 +88,8 @@ namespace Gigascapes.SignalProcessing
             var sensor = Sensors[lidarData.Index];
             var frameEntities = CalculateFrameEntities(lidarData);
 
-            switch(CalibrationPhase)
-            {
-                case CalibrationPhase.BaselineEmpty:
-                    MatchAndUpdateCalibrationBlackList(sensor, frameEntities);
-                    break;
-                case CalibrationPhase.SearchingForPoint1:
-                case CalibrationPhase.SearchingForPoint2:
-                case CalibrationPhase.SearchingForPoint3:
-                    MatchAndUpdateCalibrationEntities(sensor, frameEntities);
-                    break;
-                case CalibrationPhase.FoundPoint1:
-                    MatchAndUpdateCalibrationEntities(sensor, frameEntities);
-                    TryIdentifyPoint1(sensor);
-                    break;
-                case CalibrationPhase.FoundPoint2:
-                    MatchAndUpdateCalibrationEntities(sensor, frameEntities);
-                    TryIdentifyPoint2(sensor);
-                    break;
-                case CalibrationPhase.FoundPoint3:
-                    MatchAndUpdateCalibrationEntities(sensor, frameEntities);
-                    TryIdentifyPoint3(sensor);
-                    break;
-            }
-
-            if (CalibrationPhase == CalibrationPhase.BaselineEmpty)
-            {
-                return new CalibrationUpdate { Sensor = sensor, Entities = CalibrationInfo[sensor].BlackList.Cast<Entity>().ToArray(), Phase = CalibrationPhase };
-            }
-            return new CalibrationUpdate { Sensor = sensor, Entities = CalibrationInfo[sensor].Entities.Cast<Entity>().ToArray(), Phase = CalibrationPhase };
-		}
-
-        void TryIdentifyPoint1(Sensor sensor)
-        {
-            if (!CalibrationInfo.ContainsKey(sensor))
-                return;
-
-            var info = CalibrationInfo[sensor];
-            if (info.Entities.Count == 1)
-            {
-                info.Point1 = info.Entities[0].Position;
-            }
-            if (!CalibrationInfo.Values.Any(x => x.Point1 == Vector2.zero))
-            {
-                CalibrationPhase = CalibrationPhase.SearchingForPoint2;
-            }
-        }
-
-        void TryIdentifyPoint2(Sensor sensor)
-        {
-            if (!CalibrationInfo.ContainsKey(sensor))
-                return;
-
-            var info = CalibrationInfo[sensor];
-            if (info.Entities.Count == 1)
-            {
-                info.Point2 = info.Entities[0].Position;
-            }
-            if (!CalibrationInfo.Values.Any(x => x.Point2 == Vector2.zero))
-            {
-                CalibrationPhase = CalibrationPhase.SearchingForPoint3;
-            }
-        }
-
-        void TryIdentifyPoint3(Sensor sensor)
-        {
-            if (!CalibrationInfo.ContainsKey(sensor))
-                return;
-
-            var info = CalibrationInfo[sensor];
-            if (info.Entities.Count == 1)
-            {
-                info.Point3 = info.Entities[0].Position;
-            }
-            if (!CalibrationInfo.Values.Any(x => x.Point3 == Vector2.zero))
-            {
-                SetSensorLocations();
-                CalibrationPhase = CalibrationPhase.Calibrated;
-            }
+            MatchAndUpdateCalibrationBlackList(sensor, frameEntities);
+            return new CalibrationUpdate { Sensor = sensor, Entities = CalibrationInfo[sensor].BlackList.Cast<Entity>().ToArray(), Phase = CalibrationPhase };
         }
 
 		public override Entity[] Process(ISensorOutput data)
@@ -175,7 +97,7 @@ namespace Gigascapes.SignalProcessing
             var lidarData = data as LidarOutput;
             if (lidarData == null)
                 return Entities.ToArray();
-
+            
             var frameEntities = CalculateFrameEntities(lidarData);
             ProcessFrameEntities(frameEntities);
 
@@ -232,18 +154,23 @@ namespace Gigascapes.SignalProcessing
                     var normalizedPos = IsCalibrated ? GetNormalizedPosition(position, Left, Right, Front, Back) : position;
                     var normalizedRad = radius / (IsCalibrated ? Right - Left : 6f);
 
-                    var isAtDetectionEdge = IsCalibrated && (normalizedPos.x < 0 || normalizedPos.x > 1 || normalizedPos.y < 0 || normalizedPos.y > 1);
-
-                    var isRelevantSize = normalizedRad > MinimumEntityRadius && normalizedRad < MaximumEntityRadius;
-                    if (isRelevantSize && !isAtDetectionEdge)
+                    var newEntity = new Entity
                     {
-                        var newEntity = new Entity
-                        {
-                            Position = normalizedPos,
-                            Radius = normalizedRad
-                        };
+                        Position = normalizedPos,
+                        Radius = normalizedRad
+                    };
 
+                    var isAtDetectionEdge = IsCalibrated && (normalizedPos.x < 0 || normalizedPos.x > 1 || normalizedPos.y < 0 || normalizedPos.y > 1);
+                    var isInBlackList = EntityMatchInBlackList(newEntity);
+                    var isRelevantSize = normalizedRad > MinimumEntityRadius && normalizedRad < MaximumEntityRadius;
+                    if (isRelevantSize && !isAtDetectionEdge && !isInBlackList)
+                    {
                         entities.Add(newEntity);
+                    }
+                    else
+                    {
+                        Debug.LogWarningFormat("Entity ignored because {0}", isAtDetectionEdge ? "Outside field of play" : !isRelevantSize ? "Irrelevant size" : "On black list");
+                        Debug.LogWarningFormat("Position: {0}, {1}", normalizedPos.x, normalizedPos.y);
                     }
 
                     startingIndex = i;
@@ -273,12 +200,12 @@ namespace Gigascapes.SignalProcessing
         protected static Vector2 GetWorldPosition(Sensor sensor, LidarBeam beam)
         {
             var angleRad = beam.Angle * Mathf.Deg2Rad;
-            var output = GetWorldPosition(sensor.Location, angleRad, beam.Distance);
+            var output = GetWorldPosition(sensor.Location, sensor.Direction * Mathf.Deg2Rad, angleRad, beam.Distance);
 
             return output;
         }
 
-        protected static Vector2 GetWorldPosition(Vector2 location, float angleRad, float distance)
+        protected static Vector2 GetWorldPosition(Vector2 location, float dirRad, float angleRad, float distance)
         {
             return location + distance * new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
         }
