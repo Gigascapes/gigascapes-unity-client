@@ -23,24 +23,118 @@ namespace Gigascapes.SignalProcessing
         Calibrated
     }
 
+    public class LidarProcessingInfo
+    {
+        public Sensor Sensor;
+        public LidarBeam Beam;
+        public Vector2 StartingPosition;
+        public int StartingIndex;
+        public int ReadingLength;
+        public LidarOutput Data;
+        public float LastDist;
+        public bool WasInBlackList;
+        public bool IsInBlackList;
+        
+        LidarProcessing ProcessingMethod;
+
+        public LidarProcessingInfo (LidarProcessing method)
+        {
+            ProcessingMethod = method;
+        }
+
+        public Entity[] Process()
+        {
+            var output = new List<Entity>();
+            for (var i = StartingIndex + 1; i < Data.Data.Length; i++)
+            {
+                Beam = Data.Data[i];
+                if (Beam.Quality < ProcessingMethod.MinimumBeamQuality)
+                    continue;
+
+                var worldPos = LidarProcessing.GetWorldPosition(Sensor, Beam);
+                var isInBlacklist = ProcessingMethod.IsPointInBlackList(worldPos);
+                if (!isInBlacklist)
+                {
+                    //Debug.LogFormat("Sensor Location: ({0},{1}), dirRad: {2}, angleRad: {3}, distance: {4}", Sensor.Location.x, Sensor.Location.y, Sensor.Direction * Mathf.Deg2Rad, Beam.Angle * Mathf.Deg2Rad, Beam.Distance);
+                    //Debug.LogFormat("World pos: ({0},{1}) - [{2},{3}] [{4},{5}]", worldPos.x, worldPos.y, ProcessingMethod.Left, ProcessingMethod.Right, ProcessingMethod.Back, ProcessingMethod.Front);
+                }
+                var relativeDistanceDelta = Mathf.Abs(Beam.Distance - LastDist) / (ProcessingMethod.IsCalibrated ? ProcessingMethod.Front - ProcessingMethod.Back : 6f);
+                if (i == Data.Data.Length - 1 // Last element must create cluster
+                    || relativeDistanceDelta > ProcessingMethod.GroupingTolerance
+                    || isInBlacklist && !WasInBlackList)
+                {
+                    if (!WasInBlackList)
+                    {
+                        var newEntity = TieOffReading();
+                        if (newEntity != null)
+                            output.Add(newEntity);
+                    }
+
+                    StartingIndex = i;
+                    ReadingLength = 1;
+                    StartingPosition = worldPos;
+                }
+                else
+                {
+                    ReadingLength++;
+                }
+
+                WasInBlackList = isInBlacklist;
+                LastDist = Beam.Distance;
+            }
+
+            return output.ToArray();
+        }
+
+        Entity TieOffReading()
+        {
+            var position = LidarProcessing.GetAveragePosition(Sensor, Data.Data, StartingIndex, ReadingLength);
+            var displacement = position - Sensor.Location;
+
+            var radius = (position - StartingPosition).magnitude;
+            position += radius * displacement.normalized;
+            var normalizedPos = ProcessingMethod.IsCalibrated ? ProcessingMethod.GetNormalizedPosition(position) : position;
+            var normalizedRad = radius / (ProcessingMethod.IsCalibrated ? ProcessingMethod.Right - ProcessingMethod.Left : 6f);
+
+            var newEntity = new Entity
+            {
+                Position = normalizedPos,
+                Radius = normalizedRad
+            };
+
+            var isAtDetectionEdge = ProcessingMethod.IsCalibrated && (normalizedPos.x < 0 || normalizedPos.x > 1 || normalizedPos.y < 0 || normalizedPos.y > 1);
+            var isRelevantSize = normalizedRad > ProcessingMethod.MinimumEntityRadius && normalizedRad < ProcessingMethod.MaximumEntityRadius;
+            if (isRelevantSize && !isAtDetectionEdge)
+            {
+                return newEntity;
+            }
+            else
+            {
+                //Debug.LogWarningFormat("Entity ignored because {0}", isAtDetectionEdge ? "Outside field of play" : !isRelevantSize ? "Irrelevant size" : "On black list");
+                //Debug.LogWarningFormat("Position: {0}, {1}; Rad: {2}", normalizedPos.x, normalizedPos.y, normalizedRad);
+                return null;
+            }
+        }
+    }
+
     public class LidarProcessing : ProcessingMethod
     {
         [SerializeField]
-        protected float GroupingTolerance = 0.05f;
+        public float GroupingTolerance = 0.05f;
 
         [SerializeField]
-        protected float MinimumBeamQuality;
+        public float MinimumBeamQuality;
 
         [SerializeField]
-        protected float MinimumEntityRadius = 0.3f;
+        public float MinimumEntityRadius = 0.3f;
 
         [SerializeField]
-        protected float MaximumEntityRadius= 1f;
+        public float MaximumEntityRadius= 1f;
 
-        float Left;
-        float Right;
-        float Front;
-        float Back;
+        public float Left;
+        public float Right;
+        public float Front;
+        public float Back;
 
         public override CalibrationUpdate Calibrate(ISensorOutput data)
 		{
@@ -66,6 +160,7 @@ namespace Gigascapes.SignalProcessing
                 }
                 else
                 {
+                    //Debug.LogErrorFormat("Setting sensor position: ({0},{1}), direction: {2}", mockLidarData.Location.x, mockLidarData.Location.y, mockLidarData.Direction);
                     Sensors[lidarData.Index].Location = mockLidarData.Location;
                     Sensors[lidarData.Index].Direction = mockLidarData.Direction;
                 }
@@ -94,10 +189,13 @@ namespace Gigascapes.SignalProcessing
 
 		public override Entity[] Process(ISensorOutput data)
         {
+            //Debug.LogWarning("-----------------");
             var lidarData = data as LidarOutput;
             if (lidarData == null)
+            {
                 return Entities.ToArray();
-            
+            }
+
             var frameEntities = CalculateFrameEntities(lidarData);
             ProcessFrameEntities(frameEntities);
 
@@ -120,18 +218,21 @@ namespace Gigascapes.SignalProcessing
             {
                 var beam = lidarData.Data[i];
                 if (beam.Quality < MinimumBeamQuality)
+                {
                     continue;
+                }
 
                 var position = GetWorldPosition(sensor, beam);
-                var displacement = position - sensor.Location;
 
                 var radius = GroupingTolerance;
-                var normalizedPos = IsCalibrated ? GetNormalizedPosition(position, Left, Right, Front, Back) : position;
+                var normalizedPos = IsCalibrated ? GetNormalizedPosition(position) : position;
 
                 var newEntity = new Entity
                 {
                     Position = normalizedPos,
-                    Radius = radius
+                    Radius = radius,
+                    RawPosition = position,
+                    RawRadius = radius
                 };
 
                 entities.Add(newEntity);
@@ -146,83 +247,40 @@ namespace Gigascapes.SignalProcessing
                 return Entities.ToArray();
             }
 
-            var entities = new List<Entity>();
+            var info = new LidarProcessingInfo (this)
+            {
+                Sensor = Sensors[lidarData.Index],
+                Data = lidarData,
+                StartingIndex = 0,
+                WasInBlackList = false
+            };
 
-            var sensor = Sensors[lidarData.Index];
             var dataLength = lidarData.Data.Length;
 
-            var startingIndex = 0;
-            while (startingIndex < dataLength 
-                   && lidarData.Data[startingIndex].Quality < MinimumBeamQuality)
+            while (info.StartingIndex < dataLength 
+                   && lidarData.Data[info.StartingIndex].Quality < MinimumBeamQuality)
             {
-                startingIndex++;
+                info.StartingIndex++;
             }
-            if (startingIndex == dataLength)
+            if (info.StartingIndex == dataLength)
                 return Entities.ToArray();
 
-            var startingBeam = lidarData.Data[startingIndex];
-            var startingPosition = GetWorldPosition(sensor, startingBeam);
-            var length = 1;
-            var lastDist = startingBeam.Distance;
-
-            for (var i = startingIndex + 1; i < dataLength; i++)
-            {
-                var beam = lidarData.Data[i];
-                if (beam.Quality < MinimumBeamQuality)
-                    continue;
-
-                if (beam.Distance > sensor.MaxDistanceObserved)
-                {
-                    sensor.MaxDistanceObserved = beam.Distance;
-                }
-
-                var relativeDistanceDelta = Mathf.Abs(beam.Distance - lastDist) / (IsCalibrated ? Front - Back : 6f);
-                if (i == dataLength - 1 // Last element must create cluster
-                    || relativeDistanceDelta > GroupingTolerance)
-                {
-                    var position = GetAveragePosition(sensor, lidarData.Data, startingIndex, length);
-                    var displacement = position - sensor.Location;
-
-                    var radius = (position - startingPosition).magnitude;
-                    position += radius * displacement.normalized;
-                    var normalizedPos = IsCalibrated ? GetNormalizedPosition(position, Left, Right, Front, Back) : position;
-                    var normalizedRad = radius / (IsCalibrated ? Right - Left : 6f);
-
-                    var newEntity = new Entity
-                    {
-                        Position = normalizedPos,
-                        Radius = normalizedRad
-                    };
-
-                    var isAtDetectionEdge = IsCalibrated && (normalizedPos.x < 0 || normalizedPos.x > 1 || normalizedPos.y < 0 || normalizedPos.y > 1);
-                    var isInBlackList = EntityMatchInBlackList(newEntity);
-                    var isRelevantSize = normalizedRad > MinimumEntityRadius && normalizedRad < MaximumEntityRadius;
-                    if (isRelevantSize && !isAtDetectionEdge && !isInBlackList)
-                    {
-                        entities.Add(newEntity);
-                    }
-                    else
-                    {
-                        Debug.LogWarningFormat("Entity ignored because {0}", isAtDetectionEdge ? "Outside field of play" : !isRelevantSize ? "Irrelevant size" : "On black list");
-                        Debug.LogWarningFormat("Position: {0}, {1}", normalizedPos.x, normalizedPos.y);
-                    }
-
-                    startingIndex = i;
-                    length = 1;
-                    startingPosition = GetWorldPosition(sensor, lidarData.Data[i]);
-                }
-                else
-                {
-                    length++;
-                }
-
-                lastDist = beam.Distance;
-            }
-            Debug.LogFormat("Frame Entities: {0}", string.Join("\n", entities.Select(x => x.ToString()).ToArray()));
-            return entities.ToArray();
+            info.Beam = lidarData.Data[info.StartingIndex];
+            info.StartingPosition = GetWorldPosition(info.Sensor, info.Beam);
+            info.ReadingLength = 1;
+            info.LastDist = info.Beam.Distance;
+            var entities = info.Process();
+            
+            //Debug.LogFormat("Frame Entities: {0}", string.Join("\n", entities.Select(x => x.ToString()).ToArray()));
+            return entities;
         }
 
-        protected static Vector2 GetAveragePosition(Sensor sensor, LidarBeam[] beams, int startingIndex, int length)
+        public bool IsPointInBlackList(Vector2 position)
+        {
+            return EntityMatchInBlackList(new Entity { Position = position, SmoothedVelocity = Vector2.zero });
+        }
+
+        public static Vector2 GetAveragePosition(Sensor sensor, LidarBeam[] beams, int startingIndex, int length)
         {
             var point1 = GetWorldPosition(sensor, beams[startingIndex]);
             var point2 = GetWorldPosition(sensor, beams[startingIndex + length - 1]);
@@ -231,7 +289,7 @@ namespace Gigascapes.SignalProcessing
             return output;
         }
 
-        protected static Vector2 GetWorldPosition(Sensor sensor, LidarBeam beam)
+        public static Vector2 GetWorldPosition(Sensor sensor, LidarBeam beam)
         {
             var angleRad = beam.Angle * Mathf.Deg2Rad;
             var output = GetWorldPosition(sensor.Location, sensor.Direction * Mathf.Deg2Rad, angleRad, beam.Distance);
@@ -239,16 +297,18 @@ namespace Gigascapes.SignalProcessing
             return output;
         }
 
-        protected static Vector2 GetWorldPosition(Vector2 location, float dirRad, float angleRad, float distance)
+        public static Vector2 GetWorldPosition(Vector2 location, float dirRad, float angleRad, float distance)
         {
-            return location + distance * new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+            var combinedAngle = (Mathf.PI * 2f - angleRad) + Mathf.PI * 1.5f + dirRad;
+            return location + distance * new Vector2(Mathf.Cos(combinedAngle), Mathf.Sin(combinedAngle));
         }
 
-        protected static Vector2 GetNormalizedPosition(Vector2 position, float left, float right, float front, float back)
+        public Vector2 GetNormalizedPosition(Vector2 position)
         {
+            //Debug.LogFormat("Left:{0}, Right:{1}, Front:{2}, Back:{3}", Left, Right, Front, Back);
             return new Vector2(
-                (position.x - left) / (right - left),
-                (position.y - back) / (front - back)
+                (position.x - Left) / (Right - Left),
+                (position.y - Back) / (Front - Back)
             );
         }
     }

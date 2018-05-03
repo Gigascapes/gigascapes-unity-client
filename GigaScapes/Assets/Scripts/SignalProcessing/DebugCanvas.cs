@@ -14,6 +14,9 @@ namespace Gigascapes.SystemDebug
         public Text CalibrationButtonText;
         public Text InstructionText;
 
+        public delegate void CalibrationStartedEvent();
+        public event CalibrationStartedEvent OnCalibrationStarted;
+
         public delegate void CalibrationFinishedEvent();
         public event CalibrationFinishedEvent OnCalibrationFinished;
 
@@ -54,6 +57,10 @@ namespace Gigascapes.SystemDebug
         {
             CalibrationButtonText.text = "Area clear";
             InstructionText.text = "Clear play area";
+            if (OnCalibrationStarted != null)
+            {
+                OnCalibrationStarted();
+            }
             if (SignalProcessor != null)
             {
                 SignalProcessor.StartCalibration();

@@ -58,7 +58,11 @@ namespace Gigascapes.SignalProcessing
         public CalibrationPhase CalibrationPhase { get; protected set; }
         public bool IsCalibrated { get { return CalibrationPhase == CalibrationPhase.Calibrated; } }
 
-		void Awake()
+        public delegate void BlackListPublishEvent(Entity[] blacklist);
+        public static event BlackListPublishEvent OnPublishBlackList;
+
+
+        void Awake()
 		{
             CalibrationPhase = CalibrationPhase.Uncalibrated;
 		}
@@ -80,6 +84,7 @@ namespace Gigascapes.SignalProcessing
 
         protected void RegisterBlackList()
         {
+            BlackList.Clear();
             foreach (var info in CalibrationInfo.Values)
             {
                 foreach (var blackEntity in info.BlackList)
@@ -89,6 +94,11 @@ namespace Gigascapes.SignalProcessing
                         TryRegisterNewBlackEntity(blackEntity);
                     }
                 }
+            }
+
+            if (OnPublishBlackList != null)
+            {
+                OnPublishBlackList(BlackList.ToArray());
             }
         }
 

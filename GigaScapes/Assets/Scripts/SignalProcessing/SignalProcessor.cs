@@ -16,6 +16,9 @@ namespace Gigascapes.SignalProcessing
         public Vector2 SmoothedVelocity;
         public float SmoothedRadius;
 
+        public Vector2 RawPosition;
+        public float RawRadius;
+
         public override string ToString()
         {
             return string.Format("(Pos: {0},{1}, Rad: {2}, Vel: {3},{4})", Position.x, Position.y, Radius, Velocity.x, Velocity.y);
@@ -35,6 +38,8 @@ namespace Gigascapes.SignalProcessing
             SmoothedRadius = entity.Radius;
             SmoothedPosition = entity.Position;
             SmoothedVelocity = entity.Velocity;
+            RawPosition = entity.RawPosition;
+            RawRadius = entity.RawRadius;
             Hits = 1;
         }
     }
@@ -79,9 +84,11 @@ namespace Gigascapes.SignalProcessing
             }
             else
             {
+                var updateInfo = ProcessingMethod.Calibrate(signal);
+
                 if (UpdateCalibration != null)
                 {
-                    UpdateCalibration(ProcessingMethod.Calibrate(signal));
+                    UpdateCalibration(updateInfo);
                 }
             }
         }

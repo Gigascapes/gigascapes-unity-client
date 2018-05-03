@@ -9,6 +9,7 @@ namespace Gigascapes.SystemDebug
     {
         public DebugCanvas DebugCanvas;
         public GameSpaceVisualizer GameSpaceVisualizer;
+        public CalibrationVisualizer CalibrationVisualizer;
         public List<RplidarVisualizer> LidarVisualizers;
 
         public float CalibrationTranslationSpeed = 0.5f;
@@ -17,8 +18,12 @@ namespace Gigascapes.SystemDebug
 
         Transform CalibrationTarget;
 
+        public static DebugManager Instance;
+
 		void Awake()
 		{
+            Instance = this;
+            DebugCanvas.OnCalibrationStarted += HandleCalibrationStarted;
             DebugCanvas.OnCalibrationFinished += HandleCalibrationFinished;
             CalibrationTarget = GameSpaceVisualizer.TopLeft;
             HideDebugCanvas();
@@ -26,14 +31,20 @@ namespace Gigascapes.SystemDebug
 
         private void OnDestroy()
         {
+            DebugCanvas.OnCalibrationStarted -= HandleCalibrationStarted;
             DebugCanvas.OnCalibrationFinished -= HandleCalibrationFinished;
+        }
+
+        void HandleCalibrationStarted()
+        {
+            CalibrationVisualizer.ClearBlackEntities();
         }
 
         void HandleCalibrationFinished()
         {
             foreach (var visualizer in LidarVisualizers)
             {
-                visualizer.GetComponent<LidarSignal>().SendCalibrationData(GameSpaceVisualizer.TopLeft.position, GameSpaceVisualizer.BottomRight.position);
+                //visualizer.GetComponent<LidarSignal>().SendCalibrationData(GameSpaceVisualizer.TopLeft.position, GameSpaceVisualizer.BottomRight.position);
             }
         }
 
@@ -118,6 +129,7 @@ namespace Gigascapes.SystemDebug
                 visualizer.Show();
             }
             GameSpaceVisualizer.Show();
+            CalibrationVisualizer.Show();
         }
 
         void HideDebugCanvas()
@@ -128,6 +140,7 @@ namespace Gigascapes.SystemDebug
                 visualizer.Hide();
             }
             GameSpaceVisualizer.Hide();
+            CalibrationVisualizer.Hide();
         }
     }   
 }

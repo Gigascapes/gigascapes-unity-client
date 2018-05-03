@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using Gigascapes.SignalProcessing;
+using Gigascapes.SystemDebug;
 
 namespace Gigascapes.Sensors
 {
@@ -57,7 +58,7 @@ namespace Gigascapes.Sensors
         {
             if (IsDataChanged)
             {
-                SendData();
+                if (IsCalibrated) SendData(); else SendCalibrationData();
                 IsDataChanged = false;
             }
         }
@@ -82,7 +83,7 @@ namespace Gigascapes.Sensors
             Send(signal);
         }
 
-        public void SendCalibrationData(Vector2 topLeft, Vector2 bottomRight)
+        public void SendCalibrationData()
         {
             if (OnLidarUpdate != null)
             {
@@ -94,8 +95,8 @@ namespace Gigascapes.Sensors
                 Index = ComCode.GetHashCode(),
                 Direction = transform.rotation.eulerAngles.z,
                 Location = transform.position,
-                TopLeft = topLeft,
-                BottomRight = bottomRight,
+                TopLeft = DebugManager.Instance.GameSpaceVisualizer.TopLeft.position,
+                BottomRight = DebugManager.Instance.GameSpaceVisualizer.BottomRight.position,
                 Data = Data.Select(x => new LidarBeam
                 {
                     Distance = x.distant / 1000f,
