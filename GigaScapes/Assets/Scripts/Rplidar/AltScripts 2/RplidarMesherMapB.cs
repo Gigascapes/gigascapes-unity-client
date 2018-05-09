@@ -7,7 +7,7 @@ using System.Threading;
 namespace Gigascapes.SystemDebug
 {
     [RequireComponent(typeof(MeshFilter))]
-    public class RplidarMesherMap : MonoBehaviour
+    public class RplidarMesherMapB : MonoBehaviour
     {
 
         public bool m_onscan = false;
@@ -25,9 +25,16 @@ namespace Gigascapes.SystemDebug
         private Thread m_thread;
         private bool m_datachanged = false;
 
+		RplidarBinding rpBinding;
+
+		public bool reset = false;
+
 		public bool debug = true;
-        void Start()
+
+		void Start()
         {
+
+			//rpBinding = new RplidarBindingA();
 
             m_meshfilter = GetComponent<MeshFilter>();
 
@@ -42,9 +49,9 @@ namespace Gigascapes.SystemDebug
             m_mesh = new Mesh();
             m_mesh.MarkDynamic();
 
-            RplidarBinding.OnConnect(COM);
-            RplidarBinding.StartMotor();
-            m_onscan = RplidarBinding.StartScan();
+            RplidarBindingB.OnConnectS(COM);
+			RplidarBindingB.StartMotorS();
+            m_onscan = RplidarBindingB.StartScanS();
 
 
             if (m_onscan)
@@ -59,16 +66,22 @@ namespace Gigascapes.SystemDebug
         {
             m_thread.Abort();
 
-            RplidarBinding.EndScan();
-            RplidarBinding.EndMotor();
-            RplidarBinding.OnDisconnect();
-            RplidarBinding.ReleaseDrive();
+            RplidarBindingB.EndScanS();
+            RplidarBindingB.EndMotorS();
+            RplidarBindingB.OnDisconnectS();
+            RplidarBindingB.ReleaseDriveS();
 
             m_onscan = false;
         }
 
         void Update()
         {
+			if(reset)
+			{
+				reset = false;
+				Start();
+			}
+
             if (m_datachanged)
             {
                 m_vert.Clear();
@@ -79,7 +92,6 @@ namespace Gigascapes.SystemDebug
                     Vector3 inputV = Quaternion.Euler(0, 0, m_data[i].theta) * Vector3.down * m_data[i].distant * 0.001f;
                     //m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
                     m_vert.Add(inputV);
-
 					if (debug)
 					{
 						Debug.DrawLine(transform.position + transform.forward * 0.2f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up * 0.001f * m_data[i].distant, Color.black, 0.2f);
@@ -93,6 +105,7 @@ namespace Gigascapes.SystemDebug
 							Debug.DrawLine(transform.position - transform.forward * 0.5f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up, Color.blue, 0.2f);
 						}
 					}
+
                 }
                 for (int i = 0; i < 719; i++)
                 {
@@ -121,7 +134,7 @@ namespace Gigascapes.SystemDebug
         {
             while (true)
             {
-                int datacount = RplidarBinding.GetData(ref m_data);
+                int datacount = RplidarBindingB.GetDataS(ref m_data);
                 if (datacount == 0)
                 {
                     Thread.Sleep(20);

@@ -7,7 +7,7 @@ using System.Threading;
 namespace Gigascapes.SystemDebug
 {
     [RequireComponent(typeof(MeshFilter))]
-    public class RplidarMesherMap : MonoBehaviour
+    public class RplidarMesherMapA : MonoBehaviour
     {
 
         public bool m_onscan = false;
@@ -25,9 +25,13 @@ namespace Gigascapes.SystemDebug
         private Thread m_thread;
         private bool m_datachanged = false;
 
+		RplidarBinding rpBinding;
 		public bool debug = true;
-        void Start()
+
+		void Start()
         {
+
+			//rpBinding = new RplidarBindingA();
 
             m_meshfilter = GetComponent<MeshFilter>();
 
@@ -42,9 +46,9 @@ namespace Gigascapes.SystemDebug
             m_mesh = new Mesh();
             m_mesh.MarkDynamic();
 
-            RplidarBinding.OnConnect(COM);
-            RplidarBinding.StartMotor();
-            m_onscan = RplidarBinding.StartScan();
+            RplidarBindingA.OnConnectS(COM);
+			RplidarBindingA.StartMotorS();
+            m_onscan = RplidarBindingA.StartScanS();
 
 
             if (m_onscan)
@@ -59,10 +63,10 @@ namespace Gigascapes.SystemDebug
         {
             m_thread.Abort();
 
-            RplidarBinding.EndScan();
-            RplidarBinding.EndMotor();
-            RplidarBinding.OnDisconnect();
-            RplidarBinding.ReleaseDrive();
+            RplidarBindingA.EndScanS();
+            RplidarBindingA.EndMotorS();
+            RplidarBindingA.OnDisconnectS();
+            RplidarBindingA.ReleaseDriveS();
 
             m_onscan = false;
         }
@@ -79,7 +83,6 @@ namespace Gigascapes.SystemDebug
                     Vector3 inputV = Quaternion.Euler(0, 0, m_data[i].theta) * Vector3.down * m_data[i].distant * 0.001f;
                     //m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
                     m_vert.Add(inputV);
-
 					if (debug)
 					{
 						Debug.DrawLine(transform.position + transform.forward * 0.2f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up * 0.001f * m_data[i].distant, Color.black, 0.2f);
@@ -121,7 +124,7 @@ namespace Gigascapes.SystemDebug
         {
             while (true)
             {
-                int datacount = RplidarBinding.GetData(ref m_data);
+                int datacount = RplidarBindingA.GetDataS(ref m_data);
                 if (datacount == 0)
                 {
                     Thread.Sleep(20);
