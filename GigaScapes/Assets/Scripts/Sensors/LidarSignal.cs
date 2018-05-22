@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using Gigascapes.SignalProcessing;
@@ -9,8 +7,16 @@ using Gigascapes.SystemDebug;
 
 namespace Gigascapes.Sensors
 {
+    public enum LidarLibraryTarget
+    {
+        Base,
+        A,
+        B
+    }
+
     public class LidarSignal : SensorSignal
     {
+        public LidarLibraryTarget LibraryTarget;
         public string ComCode;
         public float StartupDelay;
         public int DataPoints = 720;
@@ -22,27 +28,17 @@ namespace Gigascapes.Sensors
         public delegate void LidarUpdateEvent(LidarData[] data);
         public event LidarUpdateEvent OnLidarUpdate;
 
-        IEnumerator Start()
+        void Start()
         {
-            yield return new WaitForSeconds(StartupDelay);
-
             Data = new LidarData[DataPoints];
-            RplidarBinding.OnConnect(ComCode);
-            RplidarBinding.StartMotor();
-            IsFound = RplidarBinding.StartScan();
-
-            if (IsFound)
-            {
-                Thread = new Thread(CheckForData);
-                Thread.Start();
-            }
+            StartCoroutine(InitializeLidar(LibraryTarget));
         }
 
         void CheckForData()
         {
             while (true)
             {
-                int datacount = RplidarBinding.GetData(ref Data);
+                int datacount = GetData(LibraryTarget);
                 if (datacount == 0)
                 {
                     Thread.Sleep(20);
@@ -109,14 +105,95 @@ namespace Gigascapes.Sensors
 
         void OnDestroy()
         {
-            Thread.Abort();
+            if (IsFound)
+            {
+                Thread.Abort();
+                IsFound = false;
+            }
 
-            RplidarBinding.EndScan();
-            RplidarBinding.EndMotor();
-            RplidarBinding.OnDisconnect();
-            RplidarBinding.ReleaseDrive();
+            ShutDownLidar(LibraryTarget);
+        }
 
-            IsFound = false;
+        IEnumerator InitializeLidar(LidarLibraryTarget target)
+        {
+            switch (target)
+            {
+                case LidarLibraryTarget.Base:
+                    RplidarBinding.OnConnect(ComCode);
+                    RplidarBinding.StartMotor();
+                    break;
+                case LidarLibraryTarget.A:
+                    RplidarBindingA.OnConnectS(ComCode);
+                    RplidarBindingA.StartMotorS();
+                    break;
+                case LidarLibraryTarget.B:
+                    RplidarBindingB.OnConnectS(ComCode);
+                    RplidarBindingB.StartMotorS();
+                    break;
+            }
+
+            yield return new WaitForSeconds(StartupDelay);
+
+            switch (target)
+            {
+                case LidarLibraryTarget.Base:
+                    IsFound = RplidarBinding.StartScan();
+                    break;
+                case LidarLibraryTarget.A:
+                    IsFound = RplidarBindingA.StartScanS();
+                    break;
+                case LidarLibraryTarget.B:
+                    IsFound = RplidarBindingB.StartScanS();
+                    break;
+            }
+
+            Debug.Log(IsFound);
+            if (IsFound)
+            {
+                Thread = new Thread(CheckForData);
+                Thread.Start();
+            }
+        }
+
+        int GetData(LidarLibraryTarget target)
+        {
+            switch (target)
+            {
+                case LidarLibraryTarget.Base:
+                    return RplidarBinding.GetData(ref Data);
+                case LidarLibraryTarget.A:
+                    return RplidarBindingA.GetDataS(ref Data);
+                case LidarLibraryTarget.B:
+                    return RplidarBindingB.GetDataS(ref Data);
+                default:
+                    return 0;
+            }
+        }
+
+        void ShutDownLidar(LidarLibraryTarget target)
+        {
+            Debug.Log("Shutting Down");
+            switch (target)
+            {
+                case LidarLibraryTarget.Base:
+                    RplidarBinding.EndScan();
+                    RplidarBinding.EndMotor();
+                    RplidarBinding.OnDisconnect();
+                    RplidarBinding.ReleaseDrive();
+                    break;
+                case LidarLibraryTarget.A:
+                    RplidarBindingA.EndScanS();
+                    RplidarBindingA.EndMotorS();
+                    RplidarBindingA.OnDisconnectS();
+                    RplidarBindingA.ReleaseDriveS();
+                    break;
+                case LidarLibraryTarget.B:
+                    RplidarBindingB.EndScanS();
+                    RplidarBindingB.EndMotorS();
+                    RplidarBindingB.OnDisconnectS();
+                    RplidarBindingB.ReleaseDriveS();
+                    break;
+            }
         }
     }
 }
