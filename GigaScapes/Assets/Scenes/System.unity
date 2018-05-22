@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &485311878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 485311877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8ab94e4c86c25345a499f4f40994da5, type: 3}
   m_Name: 
@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &592046188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsCalibrated: 0
   LibraryTarget: 0
-  ComCode: COM3
+  ComCode: COM4
   StartupDelay: 2
   DataPoints: 556
 --- !u!1 &628684165
@@ -1389,7 +1389,9 @@ MonoBehaviour:
   GameSpaceVisualizer: {fileID: 1193708795}
   CalibrationVisualizer: {fileID: 1193708798}
   LidarVisualizers:
+  - {fileID: 592046188}
   - {fileID: 628684166}
+  - {fileID: 485311878}
   CalibrationTranslationSpeed: 0.05
   CalibrationRotationSpeed: 1
   SpeedMultiplier: 3
