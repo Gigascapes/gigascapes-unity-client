@@ -342,14 +342,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 485311877}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8ab94e4c86c25345a499f4f40994da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IsCalibrated: 0
   LibraryTarget: 2
-  ComCode: COM5
+  ComCode: COM6
   StartupDelay: 2
   DataPoints: 556
 --- !u!23 &485311880
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsCalibrated: 0
   LibraryTarget: 0
-  ComCode: COM4
+  ComCode: COM3
   StartupDelay: 2
   DataPoints: 556
 --- !u!1 &628684165
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsCalibrated: 0
   LibraryTarget: 1
-  ComCode: COM6
+  ComCode: COM4
   StartupDelay: 2
   DataPoints: 556
 --- !u!23 &628684168
@@ -794,14 +794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff64d55a3ae1472ca7f05e5208a80c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Smoothing: 0.95
+  Smoothing: 0.8
   EntityTimeout: 0
   EntitySearchRadiusMultiplier: 5
   RequiredBlackListConfidence: 0.7
   GroupingTolerance: 0.05
   MinimumBeamQuality: 5
   MinimumEntityRadius: 0.03
-  MaximumEntityRadius: 0.2
+  MaximumEntityRadius: 0.25
   Left: 0
   Right: 0
   Front: 0

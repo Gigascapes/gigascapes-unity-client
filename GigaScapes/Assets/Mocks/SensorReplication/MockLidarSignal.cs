@@ -20,7 +20,16 @@ namespace Gigascapes.Sensors
             UpdateInterval = 1f / UpdateHz / LidarSensors.Count;
 		}
 
-		void Update()
+        void Start()
+        {
+            foreach (var sensor in LidarSensors)
+            {
+                Send(sensor.GetCalibrationData());
+            }
+            HandleCalibrationFinished();
+        }
+
+        void Update()
         {
             Timer += Time.deltaTime;
             if (Timer >= UpdateInterval)

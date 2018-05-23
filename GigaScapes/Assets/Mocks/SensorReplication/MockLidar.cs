@@ -15,7 +15,7 @@ namespace Gigascapes.Sensors
 
     public class MockLidar : MonoBehaviour
     {
-        [SerializeField] int Index;
+        [SerializeField] public int Index;
         [SerializeField] GameObject LaserPrefab;
         [SerializeField] int LaserCount;
         [SerializeField] float RadialMountOffset;
@@ -69,7 +69,10 @@ namespace Gigascapes.Sensors
                 Index = Index,
                 Data = LaserArray.GetSensorData()
             };
-            /*
+        }
+
+        public OmniscientLidarOutput GetCalibrationData()
+        {
             return new OmniscientLidarOutput
             {
                 Index = Index,
@@ -80,7 +83,6 @@ namespace Gigascapes.Sensors
                 TopLeft = new Vector2(TopLeftMarker.position.x, TopLeftMarker.position.z),
                 BottomRight = new Vector2(BottomRightMarker.position.x, BottomRightMarker.position.z)
             };
-            */
         }
     }
 

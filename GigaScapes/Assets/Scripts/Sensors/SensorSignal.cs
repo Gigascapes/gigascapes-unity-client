@@ -33,7 +33,7 @@ namespace Gigascapes.SignalProcessing
             IsCalibrated = false;
         }
 
-        void HandleCalibrationFinished()
+        protected void HandleCalibrationFinished()
         {
             IsCalibrated = true;
         }

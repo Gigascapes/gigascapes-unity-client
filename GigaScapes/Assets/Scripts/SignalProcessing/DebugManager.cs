@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Gigascapes.Sensors;
 
@@ -10,12 +11,12 @@ namespace Gigascapes.SystemDebug
         public DebugCanvas DebugCanvas;
         public GameSpaceVisualizer GameSpaceVisualizer;
         public CalibrationVisualizer CalibrationVisualizer;
-        public List<RplidarVisualizer> LidarVisualizers;
 
         public float CalibrationTranslationSpeed = 0.5f;
         public float CalibrationRotationSpeed = 1f;
         public float SpeedMultiplier = 2f;
 
+        List<RplidarVisualizer> LidarVisualizers;
         Transform CalibrationTarget;
 
         public static DebugManager Instance;
@@ -26,6 +27,7 @@ namespace Gigascapes.SystemDebug
             DebugCanvas.OnCalibrationStarted += HandleCalibrationStarted;
             DebugCanvas.OnCalibrationFinished += HandleCalibrationFinished;
             CalibrationTarget = GameSpaceVisualizer.TopLeft;
+            LidarVisualizers = FindObjectsOfType<RplidarVisualizer>().ToList();
             HideDebugCanvas();
 		}
 
@@ -91,7 +93,10 @@ namespace Gigascapes.SystemDebug
             }
             else if (CalibrationTarget == GameSpaceVisualizer.BottomRight)
             {
-                CalibrationTarget = LidarVisualizers[0].transform;
+                if (LidarVisualizers.Count > 0)
+                    CalibrationTarget = LidarVisualizers[0].transform;
+                else
+                    CalibrationTarget = GameSpaceVisualizer.TopLeft;
             }
             else
             {

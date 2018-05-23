@@ -53,18 +53,38 @@ namespace Gigascapes.GameModules.Common
 
 		void HandleSignal(Entity[] entities)
         {
-            for (var i = 0; i < entities.Length; i++)
+            var unhandledEntities = entities.ToList();
+            foreach (var t in ControlledTransforms)
             {
-                if (i < ControlledTransforms.Count)
+                if (unhandledEntities.Count > 0)
                 {
-                    ControlledTransforms[i].position = GameController.Instance.GetScenePosition(entities[i].SmoothedPosition);
-                }
-
-                if (ShowEntityMarkers)
-                {
-                    UpdateMarkers(entities);
+                    var closestEntity = GetClosest(t, unhandledEntities);
+                    t.position = GameController.Instance.GetScenePosition(closestEntity.SmoothedPosition);
+                    unhandledEntities.Remove(closestEntity);
                 }
             }
+
+            if (ShowEntityMarkers)
+            {
+                UpdateMarkers(entities);
+            }
+        }
+
+        Entity GetClosest(Transform t, List<Entity> entities)
+        {
+            var minDistance = Mathf.Infinity;
+            var minDistanceIndex = 0;
+            for (var i = 0; i < entities.Count; i++)
+            {
+                var distance = (entities[i].SmoothedPosition - new Vector2(t.position.x, t.position.y)).magnitude;
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    minDistanceIndex = i;
+                }
+            }
+
+            return entities[minDistanceIndex];
         }
 
         void UpdateMarkers(IEnumerable<Entity> entities)
