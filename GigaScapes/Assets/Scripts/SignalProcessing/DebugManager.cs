@@ -16,7 +16,7 @@ namespace Gigascapes.SystemDebug
         public float CalibrationRotationSpeed = 1f;
         public float SpeedMultiplier = 2f;
 
-        List<RplidarVisualizer> LidarVisualizers;
+        List<RplidarVisualizer> LidarVisualizers = new List<RplidarVisualizer>();
         Transform CalibrationTarget;
 
         public static DebugManager Instance;
@@ -50,6 +50,8 @@ namespace Gigascapes.SystemDebug
             }
         }
 
+
+
         void Update()
         {
             if (DebugCanvas.isActiveAndEnabled)
@@ -77,7 +79,35 @@ namespace Gigascapes.SystemDebug
                 {
                     CalibrationTarget.Rotate(Vector3.back * rotationSpeed);
                 }
-            }
+
+				// save and set calibration state
+				if(Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift) && LidarVisualizers.Count == 3)
+				{
+					CalibrationState a = new CalibrationState(
+						LidarVisualizers[0].transform.position, LidarVisualizers[0].transform.rotation,
+						LidarVisualizers[1].transform.position, LidarVisualizers[1].transform.rotation,
+						LidarVisualizers[2].transform.position, LidarVisualizers[2].transform.rotation
+						);
+
+					a.SaveCalibrationState(a, 1);
+
+				}
+				else if(Input.GetKeyDown(KeyCode.Alpha1) && LidarVisualizers.Count == 3)
+				{
+					CalibrationState a = new CalibrationState();
+					a = a.GetSavedCalibration(1);
+
+					LidarVisualizers[0].transform.position = a.sensor1T;
+					LidarVisualizers[0].transform.rotation = a.sensor1R;
+					LidarVisualizers[1].transform.position = a.sensor2T;
+					LidarVisualizers[1].transform.rotation = a.sensor2R;
+					LidarVisualizers[2].transform.position = a.sensor3T;
+					LidarVisualizers[2].transform.rotation = a.sensor3R;
+				}
+
+			}
+
+
 
             if (Input.GetKeyDown(KeyCode.BackQuote))
             {
@@ -148,4 +178,102 @@ namespace Gigascapes.SystemDebug
             CalibrationVisualizer.Hide();
         }
     }   
+
+	public class CalibrationState
+	{
+		public Vector3 sensor1T = Vector3.zero;
+		public Quaternion sensor1R = Quaternion.identity;
+
+		public Vector3 sensor2T = Vector3.zero;
+		public Quaternion sensor2R = Quaternion.identity;
+
+		public Vector3 sensor3T = Vector3.zero;
+		public Quaternion sensor3R = Quaternion.identity;
+
+		public CalibrationState()
+		{
+			
+		}
+
+		public CalibrationState(Vector3 s1Pos, Quaternion s1Rot,
+			Vector3 s2Pos, Quaternion s2Rot,
+			Vector3 s3Pos, Quaternion s3Rot)
+		{
+			sensor1T = s1Pos;
+			sensor1R = s1Rot;
+			sensor2T = s2Pos;
+			sensor2R = s2Rot;
+			sensor3T = s3Pos;
+			sensor3R = s3Rot;
+		}
+
+		public void SaveCalibrationState (CalibrationState cs, int key)
+		{
+			//sensor1
+			PlayerPrefs.SetFloat(key.ToString() + "s1tx", cs.sensor1T.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s1ty", cs.sensor1T.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s1tz", cs.sensor1T.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s1tx", cs.sensor1R.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s1ty", cs.sensor1R.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s1tz", cs.sensor1R.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s1tw", cs.sensor1R.w);
+			//sensor2
+			PlayerPrefs.SetFloat(key.ToString() + "s2tx", cs.sensor2T.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s2ty", cs.sensor2T.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s2tz", cs.sensor2T.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s2tx", cs.sensor2R.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s2ty", cs.sensor2R.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s2tz", cs.sensor2R.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s2tw", cs.sensor2R.w);
+			//sensor3
+			PlayerPrefs.SetFloat(key.ToString() + "s3tx", cs.sensor3T.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s3ty", cs.sensor3T.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s3tz", cs.sensor3T.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s3tx", cs.sensor3R.x);
+			PlayerPrefs.SetFloat(key.ToString() + "s3ty", cs.sensor3R.y);
+			PlayerPrefs.SetFloat(key.ToString() + "s3tz", cs.sensor3R.z);
+			PlayerPrefs.SetFloat(key.ToString() + "s3tw", cs.sensor3R.w);
+		}
+
+		public CalibrationState GetSavedCalibration(int key)
+		{
+			if (PlayerPrefs.HasKey(key.ToString() + "s3tw"))
+			{
+				return new CalibrationState(
+					new Vector3(
+						PlayerPrefs.GetFloat(key.ToString() + "s1tx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s1ty"),
+						PlayerPrefs.GetFloat(key.ToString() + "s1tz")),
+					new Quaternion(
+						PlayerPrefs.GetFloat(key.ToString() + "s1rx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s1ry"),
+						PlayerPrefs.GetFloat(key.ToString() + "s1rz"),
+						PlayerPrefs.GetFloat(key.ToString() + "s1rw")),
+					new Vector3(
+						PlayerPrefs.GetFloat(key.ToString() + "s2tx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s2ty"),
+						PlayerPrefs.GetFloat(key.ToString() + "s2tz")),
+					new Quaternion(
+						PlayerPrefs.GetFloat(key.ToString() + "s2rx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s2ry"),
+						PlayerPrefs.GetFloat(key.ToString() + "s2rz"),
+						PlayerPrefs.GetFloat(key.ToString() + "s2rw")),
+					new Vector3(
+						PlayerPrefs.GetFloat(key.ToString() + "s3tx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s3ty"),
+						PlayerPrefs.GetFloat(key.ToString() + "s3tz")),
+					new Quaternion(
+						PlayerPrefs.GetFloat(key.ToString() + "s3rx"),
+						PlayerPrefs.GetFloat(key.ToString() + "s3ry"),
+						PlayerPrefs.GetFloat(key.ToString() + "s3rz"),
+						PlayerPrefs.GetFloat(key.ToString() + "s3rw"))
+					);
+			}
+			else
+			{
+				return new CalibrationState();
+			}
+		}
+
+	}
 }
