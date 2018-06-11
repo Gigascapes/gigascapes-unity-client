@@ -87,11 +87,11 @@ namespace Gigascapes.SystemDebug
 
                     if (m_data[i].quality > 0)
                     {
-                        Debug.DrawLine(transform.position - transform.forward * 0.5f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up * 0.1f * m_data[i].quality, Color.green, 0.2f);
+                        //Debug.DrawLine(transform.position - transform.forward * 0.5f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up * 0.1f * m_data[i].quality, Color.green, 0.2f);
                     }
                     if (m_data[i].quality <= 0)
                     {
-                        Debug.DrawLine(transform.position - transform.forward * 0.5f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up, Color.blue, 0.2f);
+                       // Debug.DrawLine(transform.position - transform.forward * 0.5f, transform.position + transform.rotation * Quaternion.Euler(0, 0, m_data[i].theta) * -transform.up, Color.blue, 0.2f);
                     }
 
                 }

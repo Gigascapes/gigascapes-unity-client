@@ -1,9 +1,11 @@
 ﻿using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using Gigascapes.Sensors;
 using Gigascapes.SignalProcessing;
 using System.Linq;
+using System.Threading;
 
 [RequireComponent(typeof(MeshFilter))]
 public class Visualizer3D : MonoBehaviour {
@@ -15,6 +17,7 @@ public class Visualizer3D : MonoBehaviour {
 	public List<List<LidarDataAnd>> History = new List<List<LidarDataAnd>>();
 
 	public List<List<Vector2>> PositionHistory = new List<List<Vector2>>();
+	public List<List<Vector2>> d1PositionHistory = new List<List<Vector2>>();
 
 	public List<GameObject> ManipulatedPool;
 
@@ -29,18 +32,29 @@ public class Visualizer3D : MonoBehaviour {
 	
 	private List<int> triangles = new List<int>();
 
+	Thread tV;
+
+	public int HistLength = 5;
+	
+
 	void Awake()
 	{
-		MeshRenderer = GetComponent<MeshRenderer>();
+		//MeshRenderer = GetComponent<MeshRenderer>();
 		
-		m_meshfilter = GetComponent<MeshFilter>();
+		//m_meshfilter = GetComponent<MeshFilter>();
 
 		
-		m_vert = new List<Vector3>();
+		//m_vert = new List<Vector3>();
 		
-		m_mesh = new Mesh();
-		m_mesh.MarkDynamic();
+		//m_mesh = new Mesh();
+		//m_mesh.MarkDynamic();
+
+		//tV = new Thread(Visualization);
+		//tV.Start();
+		
 	}
+
+	void nulltarget() { }
 
 	private void FixedUpdate()
 	{
@@ -83,14 +97,40 @@ public class Visualizer3D : MonoBehaviour {
 		History.Add(combo);
 		PositionHistory.Add(TransformedPostitions);
 
-		if (History.Count > 100)
+		
+
+		if (History.Count > HistLength)
 		{
 			History.RemoveAt(0);
 		}
-		if (PositionHistory.Count > 100)
+		if (PositionHistory.Count > HistLength)
 		{
 			PositionHistory.RemoveAt(0);
 		}
+		if (PositionHistory.Count > 1)
+		{
+			int x = PositionHistory.Count - 1;
+			int x0 = PositionHistory.Count - 2;
+
+			//d1PositionHistory[PositionHistory.Count - 1]
+			
+				List<Vector2> Spawn = new List<Vector2>();
+				for (int y = 0; y < PositionHistory[x].Count && y < PositionHistory[x0].Count; y++)
+				{
+					Spawn.Add(PositionHistory[x][y] - PositionHistory[x0][y]);
+				}
+				d1PositionHistory.Add(Spawn);
+			
+		}
+
+		if (d1PositionHistory.Count > HistLength -1)
+		{
+			d1PositionHistory.RemoveAt(0);
+		}
+
+		printV();
+
+		//VisualizationNL();
 
 		//LidarProcessing.GetWorldPosition()
 
@@ -114,36 +154,7 @@ public class Visualizer3D : MonoBehaviour {
 		//	}
 		//}
 
-		m_vert.Clear();
-		triangles.Clear();
-		m_vert.Add(Vector3.zero);
-		int i = 0;
-		for (int x = 0; x < PositionHistory.Count; x++)
-		{
-			for (int y = 0; y < PositionHistory[x].Count; y++)
-			{
-				Vector3 inputV = new Vector3(PositionHistory[x][y].x, PositionHistory[x][y].y,x);
-				//m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
-				m_vert.Add(inputV);
-				i++;
-			}
-		}
-		for (int d = 1; d < m_vert.Count; d++)
-		{
-			triangles.Add(d-1);
-			triangles.Add(d);
-			triangles.Add(d + 1);
-
-		}
-	
-
-		m_mesh.SetVertices(m_vert);
-		//m_mesh.SetIndices(m_ind.ToArray(), MeshTopology.Points, 0);
-		m_mesh.SetTriangles(triangles.ToArray(), 0);
-
-
-		m_mesh.UploadMeshData(false);
-		m_meshfilter.mesh = m_mesh;
+		
 	}
 
 	public static Vector2 LidarData2Transform(LidarDataAnd data)
@@ -156,6 +167,124 @@ public class Visualizer3D : MonoBehaviour {
 	//{
 	//	return LidarProcessing.GetWorldPosition();
 	//}
+
+	void Visualization()
+	{
+		while (true)
+		{
+			if (true) {
+				//m_vert.Clear();
+				//triangles.Clear();
+				//m_vert.Add(Vector3.zero);
+				int i = 0;
+				for (int x = 0; x < PositionHistory.Count; x++)
+				{
+					for (int y = 0; y < PositionHistory[x].Count; y++)
+					{
+						Vector3 inputV = new Vector3(PositionHistory[x][y].x, PositionHistory[x][y].y, x);
+						//m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
+
+						try
+						{
+							Debug.Log("check" + i.ToString());
+							Debug.DrawLine(inputV, inputV + (Vector3)d1PositionHistory[x][y], Color.cyan, 1f / 30f);
+						}
+						catch { }
+
+						//m_vert.Add(inputV);
+						i++;
+					}
+				}
+				for (int d = 1; d < m_vert.Count; d++)
+				{
+					triangles.Add(d - 1);
+					triangles.Add(d);
+					triangles.Add(d + 1);
+
+				}
+
+
+				//m_mesh.SetVertices(m_vert);
+				////m_mesh.SetIndices(m_ind.ToArray(), MeshTopology.Points, 0);
+				//m_mesh.SetTriangles(triangles.ToArray(), 0);
+
+
+				//m_mesh.UploadMeshData(false);
+				//m_meshfilter.mesh = m_mesh;
+			}
+		}
+	}
+
+	void VisualizationNL()
+	{
+		
+			if (true)
+			{
+				//m_vert.Clear();
+				//triangles.Clear();
+				//m_vert.Add(Vector3.zero);
+				int i = 0;
+				int x = PositionHistory.Count - 1;
+					for (int y = 0; y < PositionHistory[x].Count && y < 500; y++)
+					{
+						Vector3 inputV = new Vector3(PositionHistory[x][y].x, PositionHistory[x][y].y, x);
+				//m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
+				Debug.Log("check" + i.ToString());
+				try
+						{
+							Debug.Log("check" + i.ToString());
+							Debug.DrawLine(inputV, inputV + (Vector3)d1PositionHistory[x][y], Color.cyan, 1f / 30f);
+						}
+						catch { }
+
+						//m_vert.Add(inputV);
+						i++;
+					}
+				
+				//for (int d = 1; d < m_vert.Count; d++)
+				//{
+				//	triangles.Add(d - 1);
+				//	triangles.Add(d);
+				//	triangles.Add(d + 1);
+
+				//}
+
+
+				//m_mesh.SetVertices(m_vert);
+				////m_mesh.SetIndices(m_ind.ToArray(), MeshTopology.Points, 0);
+				//m_mesh.SetTriangles(triangles.ToArray(), 0);
+
+
+				//m_mesh.UploadMeshData(false);
+				//m_meshfilter.mesh = m_mesh;
+			}
+		
+	}
+
+	void printV ()
+	{
+		int i = 0;
+		string s = "";
+		int x = PositionHistory.Count - 1;
+		for (int y = 0; y < d1PositionHistory[x].Count && y < 500; y++)
+		{
+			//Vector3 inputV = new Vector3(PositionHistory[x][y].x, PositionHistory[x][y].y, x);
+			//m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
+			//Debug.Log("check" + i.ToString());
+			s += d1PositionHistory[x][y].x.ToString() + "  -  ";
+			
+			try
+			{
+				//Debug.Log("check" + i.ToString());
+				//Debug.DrawLine(inputV, inputV + (Vector3)d1PositionHistory[x][y], Color.cyan, 1f / 30f);
+			}
+			catch { }
+
+			//m_vert.Add(inputV);
+			i++;
+		}
+		Debug.Log( s);
+	}
 }
 
 public class LidarDataAnd
@@ -169,3 +298,6 @@ public class LidarDataAnd
 		t = T;
 	}
 }
+
+
+
