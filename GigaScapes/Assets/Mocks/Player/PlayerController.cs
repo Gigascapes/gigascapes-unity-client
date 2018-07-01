@@ -9,11 +9,11 @@ namespace Gigascapes.Player
         [SerializeField]
         float MovementForce = 1;
 
-        Rigidbody Rigidbody;
+        Rigidbody2D Rigidbody;
 
         void Awake()
         {
-            Rigidbody = GetComponent<Rigidbody>();
+            Rigidbody = GetComponent<Rigidbody2D>();
         }
 
         void Update()
