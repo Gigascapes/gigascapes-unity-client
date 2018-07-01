@@ -18,7 +18,7 @@ namespace Gigascapes.Player
 
         void Update()
         {
-            Rigidbody.AddForce((Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal")) * MovementForce);
+            Rigidbody.AddForce((Vector3.up * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal")) * MovementForce);
         }
     }
 }
