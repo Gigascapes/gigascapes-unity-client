@@ -17,12 +17,14 @@ namespace Gigascapes.SystemDebug
         private List<Vector3> m_vert;
         private List<int> m_ind;
         private List<int> triangles = new List<int>();
+		private MeshCollider mc =null;
 
         void Awake()
         {
             MeshRenderer = GetComponent<MeshRenderer>();
             Signal = GetComponent<LidarSignal>();
             m_meshfilter = GetComponent<MeshFilter>();
+			mc = GetComponent<MeshCollider>();
 
             Signal.OnLidarUpdate += HandleLidarUpdate;
 
@@ -76,6 +78,13 @@ namespace Gigascapes.SystemDebug
 
             m_mesh.UploadMeshData(false);
             m_meshfilter.mesh = m_mesh;
+
+			if(mc != null)
+			{
+				mc.enabled = false;
+				mc.sharedMesh = m_meshfilter.mesh;
+				mc.enabled = true;
+			}
         }
 
         public void Hide()

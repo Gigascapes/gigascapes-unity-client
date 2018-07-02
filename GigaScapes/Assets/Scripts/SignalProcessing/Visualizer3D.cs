@@ -7,6 +7,7 @@ using Gigascapes.SignalProcessing;
 using System.Linq;
 using System.Threading;
 
+
 [RequireComponent(typeof(MeshFilter))]
 public class Visualizer3D : MonoBehaviour {
 
