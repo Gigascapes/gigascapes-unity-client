@@ -9,22 +9,46 @@ using uPLibrary.Networking.M2Mqtt.Exceptions;
 using System;
 
 public class mqttTest : MonoBehaviour {
+	private string brokerHost = "m10.cloudmqtt.com";
+	private string username = "unity-astroids";
+	private string password = "unity-09876";
+	private string clientId;
+	private string topicPrefix = "gigascapes";
+	private int brokerPort = 12173;
+
 	private MqttClient client;
 	// Use this for initialization
 	void Start () {
-		// create client instance 
-		client = new MqttClient(IPAddress.Parse("143.185.118.233"),8080 , false , null ); 
+		clientId = Guid.NewGuid().ToString();
+
+		// create client instance
+		client = new MqttClient(brokerHost, brokerPort, false , null); 
+
+		// register for disconnected event 
+		client.MqttMsgDisconnected += client_MqttMsgDisconnected; 
 		
-		// register to message received 
+		// register for message received event 
 		client.MqttMsgPublishReceived += client_MqttMsgPublishReceived; 
-		
-		string clientId = Guid.NewGuid().ToString(); 
-		client.Connect(clientId); 
+
+		client.Connect(clientId, username, password); 
 		
 		// subscribe to the topic "/home/temperature" with QoS 2 
-		client.Subscribe(new string[] { "hello/world" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); 
+		client.Subscribe(new string[] { AllPositionsTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); 
 
 	}
+	public string AllPositionsTopic
+	{
+		get { return topicPrefix + "/+/positions"; }
+	}
+	public string SelfPositionsTopic
+	{
+		get { return topicPrefix + "/" + clientId + "/positions"; }
+	}
+
+	void client_MqttMsgDisconnected(object self, System.EventArgs e) 
+	{ 
+		Debug.Log("Disconnected");
+	} 
 	void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e) 
 	{ 
 
@@ -33,15 +57,16 @@ public class mqttTest : MonoBehaviour {
 
 	void OnGUI(){
 		if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
-			Debug.Log("sending...");
-			client.Publish("hello/world", System.Text.Encoding.UTF8.GetBytes("Sending from Unity3D!!!"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+			string payload = "{\"positions\":[{\"x\":0.49822380106572,\"y\":0.23090586145648}]}";
+			Debug.Log("sending on topic:" + SelfPositionsTopic);
+			Debug.Log("payload:" + payload);
+			client.Publish(SelfPositionsTopic, 
+				System.Text.Encoding.UTF8.GetBytes(payload), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
 			Debug.Log("sent");
 		}
 	}
 	// Update is called once per frame
 	void Update () {
-
-
 
 	}
 }
