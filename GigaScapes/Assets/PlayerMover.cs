@@ -7,6 +7,7 @@ public class PlayerMover : MonoBehaviour
     Vector2 thisVec;
     Vector2 mouseVec;
     Rigidbody2D shipRB;
+    public AnimationCurve forceOverDistance;
 
 	// Use this for initialization
 	void Awake ()
@@ -26,9 +27,10 @@ public class PlayerMover : MonoBehaviour
     {
         thisVec = gameObject.transform.position;
         mouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 vel = shipRB.velocity;
 
-        gameObject.transform.position = Vector2.SmoothDamp(thisVec, mouseVec, ref vel, 10.0f, 1.0f, 15.0f);
+        Vector2 heading = mouseVec - thisVec;
+        var distance = heading.magnitude;
 
+        shipRB.AddForce(heading.normalized * forceOverDistance.Evaluate(distance));
     }
 }
