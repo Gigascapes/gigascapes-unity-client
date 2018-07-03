@@ -26,6 +26,15 @@ public class TrackableObject : MonoBehaviour {
 
     public Vector3 ApparentAccel = Vector3.zero;
 
+    //public Vector3 Garbagge;
+
+    private void Start()
+    {
+        //Garbagge = ParticleField.FromLocalToWorld(Vector3.one);
+
+        //Debug.Log(ParticleField.FromLocalToWorld(Vector3.one).x.ToString());
+    }
+
     void Update () {
         CalculatePos();
         VectorDebug();
@@ -42,9 +51,9 @@ public class TrackableObject : MonoBehaviour {
 
     void CalculatePos()
     {
-        //Vector3 localPos = ParticleField.transform.worldToLocalMatrix.MultiplyPoint(transform.position);
+        Vector3 localPos = ParticleField.FromWorldToLocal(transform.position);
 
-        Vector3 localPos = transform.position - ParticleField.transform.position;
+        //Vector3 localPos = transform.position - ParticleField.transform.position;
 
         //for(int x = (int)(localPos.x - Size); x < (int)(localPos.x - Size))
 
@@ -53,9 +62,9 @@ public class TrackableObject : MonoBehaviour {
         int posCount = 0;
         foreach (KeyValuePair<int[], Detector> kvp in ParticleField.PosDelta)
         {
-            if (kvp.Key[0] > (localPos.x - Size) && kvp.Key[0] < (localPos.x + Size))
+            if (kvp.Value.transform.position.x > (transform.position.x - Size) && kvp.Value.transform.position.x < (transform.position.x + Size))
             {
-                if (kvp.Key[1] > (localPos.z - Size) && kvp.Key[1] < (localPos.z + Size))
+                if (kvp.Value.transform.position.z > (transform.position.z - Size) && kvp.Value.transform.position.z < (transform.position.z + Size))
                 {
                     posAvg += kvp.Value.transform.localPosition;
                     posCount++;
@@ -70,9 +79,9 @@ public class TrackableObject : MonoBehaviour {
         int negCount = 0;
         foreach (KeyValuePair<int[], Detector> kvp in ParticleField.PosDelta)
         {
-            if (kvp.Key[0] > (localPos.x - Size) && kvp.Key[0] < (localPos.x + Size))
+            if (kvp.Value.transform.position.x > (transform.position.x - Size) && kvp.Value.transform.position.x < (transform.position.x + Size))
             {
-                if (kvp.Key[1] > (localPos.z - Size) && kvp.Key[1] < (localPos.z + Size))
+                if (kvp.Value.transform.position.z > (transform.position.z - Size) && kvp.Value.transform.position.z < (transform.position.z + Size))
                 {
                     negAvg += kvp.Value.transform.localPosition;
                     negCount++;
@@ -92,7 +101,7 @@ public class TrackableObject : MonoBehaviour {
                 (float)negCount / (float)posCount > DeltaRatio && (float)negCount / (float)posCount <= 1)
             {
                 TargetPos = ParticleField.FromLocalToWorld((posAvg + negAvg) / (float)2);
-                Velocity = ParticleField.transform.localToWorldMatrix.MultiplyVector(posAvg - negAvg);
+                Velocity = ParticleField.FromLocalToWorld(posAvg - negAvg);
                 Velocity = Velocity.normalized;
                 ApparentAccel = Velocity - Velocity0;
                 Velocity0 = Velocity;

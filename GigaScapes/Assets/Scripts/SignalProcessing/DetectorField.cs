@@ -12,7 +12,7 @@ public class DetectorField : MonoBehaviour
 
 	private Vector3 LocalSize = Vector3.one;
 
-	private float unitLength = 1;
+    public float unitLength = 1;
 
 	private Dictionary<int[], GameObject> Spawns = new Dictionary<int[], GameObject>();
 
@@ -147,5 +147,14 @@ public class DetectorField : MonoBehaviour
         //Vector3 ans = new Vector3(loc.x*shape.x,loc.y*shape.y,loc.shape)
 
         return transform.localToWorldMatrix.MultiplyPoint(loc);
+    }
+
+    public Vector3 FromWorldToLocal(Vector3 loc)
+    {
+        //  Vector3 shape = transform.localPosition;
+
+        //Vector3 ans = new Vector3(loc.x*shape.x,loc.y*shape.y,loc.shape)
+
+        return transform.worldToLocalMatrix.MultiplyPoint(loc);
     }
 }
