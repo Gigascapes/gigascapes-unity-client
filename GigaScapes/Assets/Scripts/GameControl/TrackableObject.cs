@@ -101,7 +101,7 @@ public class TrackableObject : MonoBehaviour {
                 (float)negCount / (float)posCount > DeltaRatio && (float)negCount / (float)posCount <= 1)
             {
                 TargetPos = ParticleField.FromLocalToWorld((posAvg + negAvg) / (float)2);
-                Velocity = ParticleField.FromLocalToWorld(posAvg - negAvg);
+                Velocity = ParticleField.FromLocalToWDirection(posAvg - negAvg);
                 Velocity = Velocity.normalized;
                 ApparentAccel = Velocity - Velocity0;
                 Velocity0 = Velocity;

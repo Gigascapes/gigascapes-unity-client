@@ -157,4 +157,9 @@ public class DetectorField : MonoBehaviour
 
         return transform.worldToLocalMatrix.MultiplyPoint(loc);
     }
+
+    public Vector3 FromLocalToWDirection(Vector3 loc)
+    {
+        return transform.localToWorldMatrix.MultiplyVector(loc);
+    }
 }

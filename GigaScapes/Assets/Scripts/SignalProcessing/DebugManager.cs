@@ -80,32 +80,17 @@ namespace Gigascapes.SystemDebug
                     CalibrationTarget.Rotate(Vector3.back * rotationSpeed);
                 }
 
-				// save and set calibration state
-				if(Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift) && LidarVisualizers.Count == 3)
-				{
-					CalibrationState a = new CalibrationState(
-						LidarVisualizers[0].transform.position, LidarVisualizers[0].transform.rotation,
-						LidarVisualizers[1].transform.position, LidarVisualizers[1].transform.rotation,
-						LidarVisualizers[2].transform.position, LidarVisualizers[2].transform.rotation
-						);
+                // save and set calibration state
+                CalibrationSave(KeyCode.Alpha1, 1);
+                CalibrationSave(KeyCode.Alpha2, 2);
+                CalibrationSave(KeyCode.Alpha3, 3);
+                CalibrationSave(KeyCode.Alpha4, 4);
+                CalibrationSave(KeyCode.Alpha5, 5);
+                CalibrationSave(KeyCode.Alpha6, 6);
+                CalibrationSave(KeyCode.Alpha7, 7);
+                CalibrationSave(KeyCode.Alpha8, 8);
 
-					a.SaveCalibrationState(a, 1);
-
-				}
-				else if(Input.GetKeyDown(KeyCode.Alpha1) && LidarVisualizers.Count == 3)
-				{
-					CalibrationState a = new CalibrationState();
-					a = a.GetSavedCalibration(1);
-
-					LidarVisualizers[0].transform.position = a.sensor1T;
-					LidarVisualizers[0].transform.rotation = a.sensor1R;
-					LidarVisualizers[1].transform.position = a.sensor2T;
-					LidarVisualizers[1].transform.rotation = a.sensor2R;
-					LidarVisualizers[2].transform.position = a.sensor3T;
-					LidarVisualizers[2].transform.rotation = a.sensor3R;
-				}
-
-			}
+            }
 
 
 
@@ -176,6 +161,34 @@ namespace Gigascapes.SystemDebug
             }
             GameSpaceVisualizer.Hide();
             CalibrationVisualizer.Hide();
+        }
+
+        void CalibrationSave(KeyCode kCode, int slot)
+        {
+            // save and set calibration state
+            if (Input.GetKeyDown(kCode) && Input.GetKey(KeyCode.LeftShift) && LidarVisualizers.Count == 3)
+            {
+                CalibrationState a = new CalibrationState(
+                    LidarVisualizers[0].transform.position, LidarVisualizers[0].transform.rotation,
+                    LidarVisualizers[1].transform.position, LidarVisualizers[1].transform.rotation,
+                    LidarVisualizers[2].transform.position, LidarVisualizers[2].transform.rotation
+                    );
+
+                a.SaveCalibrationState(a, slot);
+
+            }
+            else if (Input.GetKeyDown(kCode) && LidarVisualizers.Count == 3)
+            {
+                CalibrationState a = new CalibrationState();
+                a = a.GetSavedCalibration(slot);
+
+                LidarVisualizers[0].transform.position = a.sensor1T;
+                LidarVisualizers[0].transform.rotation = a.sensor1R;
+                LidarVisualizers[1].transform.position = a.sensor2T;
+                LidarVisualizers[1].transform.rotation = a.sensor2R;
+                LidarVisualizers[2].transform.position = a.sensor3T;
+                LidarVisualizers[2].transform.rotation = a.sensor3R;
+            }
         }
     }   
 
