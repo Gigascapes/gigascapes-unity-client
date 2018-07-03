@@ -65,8 +65,9 @@ public class Detector : MonoBehaviour
 
 	private void Update()
 	{
-		if (History.FindAll(x => x == 1).Count > 2)
-		{
+		///if (History.FindAll(x => x == 1).Count > 2)
+        if (History[0] == 1)
+            {
 			//rend.enabled = false;
 			on = false;
 			//rend.material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f),0.7f);
@@ -99,7 +100,7 @@ public class Detector : MonoBehaviour
 			History.Add(0);
 		}
 
-		while(History.Count > 3)
+		while(History.Count > 10)
 		{
 			History.RemoveAt(0);
 		}
