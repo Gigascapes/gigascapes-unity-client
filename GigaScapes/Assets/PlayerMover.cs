@@ -41,7 +41,7 @@ public class PlayerMover : MonoBehaviour
     {
         thisVec = gameObject.transform.position;
         mouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetVec = new Vector2(trackerOBJ.transform.position.x, trackerOBJ.transform.position.z);
+        targetVec = new Vector2((trackerOBJ.transform.position.x + 12), (trackerOBJ.transform.position.z + 26.6f));
 
         if(TrackMouse)
         {
