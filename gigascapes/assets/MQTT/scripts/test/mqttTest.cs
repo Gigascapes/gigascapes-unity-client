@@ -38,7 +38,7 @@ public class mqttTest : MonoBehaviour {
 	}
 	public string AllPositionsTopic
 	{
-		get { return topicPrefix + "/+/positions"; }
+		get { return topicPrefix + "/+/positions-ts"; }
 	}
 	public string SelfPositionsTopic
 	{
