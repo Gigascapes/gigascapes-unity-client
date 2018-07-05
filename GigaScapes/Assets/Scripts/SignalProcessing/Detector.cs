@@ -65,7 +65,28 @@ public class Detector : MonoBehaviour
 
 	private void Update()
 	{
-		///if (History.FindAll(x => x == 1).Count > 2)
+        if (Physics.CheckBox(transform.position, transform.localScale * 0.6f, transform.rotation, 1 << 8))
+        {
+            collided = true;
+        }
+
+        if (collided)
+        {
+            History.Add(1);
+
+            collided = false;
+        }
+        else
+        {
+            History.Add(0);
+        }
+
+        while (History.Count > 10)
+        {
+            History.RemoveAt(0);
+        }
+
+        ///if (History.FindAll(x => x == 1).Count > 2)
         if (History[0] == 1)
             {
 			//rend.enabled = false;
@@ -79,31 +100,11 @@ public class Detector : MonoBehaviour
 			//rend.material.color = new Color(1, 1, 1, 0.7f);
 		}
 
-		
-		if (Physics.CheckBox(transform.position, transform.localScale * 0.6f,transform.rotation, 1 << 8))
-		{
-			collided = true;
-		}
-
 	}
 
 	private void LateUpdate()
 	{
-		if (collided)
-		{
-			History.Add(1);
-
-			collided = false;
-		}
-		else
-		{
-			History.Add(0);
-		}
-
-		while(History.Count > 10)
-		{
-			History.RemoveAt(0);
-		}
+		
 
 	}
 }

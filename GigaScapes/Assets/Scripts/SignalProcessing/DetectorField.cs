@@ -74,34 +74,43 @@ public class DetectorField : MonoBehaviour
             }
         }
 
-            //foreach (KeyValuePair<int[], Detector> kvp in On)
-            //{
-            //    if (!On0.Contains(kvp))
-            //    {
-            //        if (!PosDelta.Contains(kvp))
-            //        {
-            //            PosDelta.Add(kvp.Key, kvp.Value);
-            //        }
-            //        else
-            //        {
-            //            PosDelta[kvp.Key] = kvp.Value;
-            //        }
-            //    }
-            //}
+        //foreach (KeyValuePair<int[], Detector> kvp in On)
+        //{
+        //    if (!On0.Contains(kvp))
+        //    {
+        //        if (!PosDelta.Contains(kvp))
+        //        {
+        //            PosDelta.Add(kvp.Key, kvp.Value);
+        //        }
+        //        else
+        //        {
+        //            PosDelta[kvp.Key] = kvp.Value;
+        //        }
+        //    }
+        //}
 
-            //foreach (KeyValuePair<int[], Detector> kvp in On0)
-            //{
-            //    if (!On.Contains(kvp))
-            //    {
-            //        NegDelta.Add(kvp.Key, kvp.Value);
-            //    }
-            //    else
-            //    {
-            //        NegDelta[kvp.Key] = kvp.Value;
-            //    }
-            //}
+        //foreach (KeyValuePair<int[], Detector> kvp in On0)
+        //{
+        //    if (!On.Contains(kvp))
+        //    {
+        //        NegDelta.Add(kvp.Key, kvp.Value);
+        //    }
+        //    else
+        //    {
+        //        NegDelta[kvp.Key] = kvp.Value;
+        //    }
+        //}
 
-            foreach (KeyValuePair<int[], Detector> k in PosDelta)
+        foreach (KeyValuePair<int[], Detector> k in SpawnsD)
+        {
+            if (k.Value.on)
+            {
+                Vector3 point = transform.localToWorldMatrix.MultiplyPoint(new Vector3(unitLength * (float)k.Key[0], 0, unitLength * (float)k.Key[1]));
+                Debug.DrawLine(point, point + Vector3.up, Color.white);
+            }
+        }
+
+        foreach (KeyValuePair<int[], Detector> k in PosDelta)
         {
             Vector3 point = transform.localToWorldMatrix.MultiplyPoint(new Vector3(unitLength * (float)k.Key[0], 0, unitLength * (float)k.Key[1]));
             Debug.DrawLine(point, point+ Vector3.up,Color.green);

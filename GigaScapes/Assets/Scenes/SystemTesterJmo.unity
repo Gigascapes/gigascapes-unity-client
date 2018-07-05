@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &72422791
 GameObject:
@@ -160,8 +165,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &72422794
 MeshRenderer:
@@ -172,6 +179,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -187,6 +195,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -272,8 +281,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &99098071
 MeshRenderer:
@@ -284,6 +295,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -299,6 +311,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -378,8 +391,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &143891181
 MeshRenderer:
@@ -390,6 +405,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -405,6 +421,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -484,8 +501,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &184442976
 MeshRenderer:
@@ -496,6 +515,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -511,6 +531,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -590,8 +611,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &186013492
 MeshRenderer:
@@ -602,6 +625,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -617,6 +641,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -686,7 +711,7 @@ Prefab:
     - target: {fileID: 114850793204356158, guid: ada4c2060194cba4288c674ff15f1c6d,
         type: 2}
       propertyPath: ComCode
-      value: COM9
+      value: COM4
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalScale.x
@@ -703,6 +728,11 @@ Prefab:
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447853017571682, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: ComCode
+      value: COM5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
@@ -749,7 +779,7 @@ Prefab:
     - target: {fileID: 20770238875629638, guid: 93e896ce52b9386469f3397803b7afcf,
         type: 2}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20770238875629638, guid: 93e896ce52b9386469f3397803b7afcf,
         type: 2}
@@ -759,7 +789,11 @@ Prefab:
     - target: {fileID: 114696769370446702, guid: 93e896ce52b9386469f3397803b7afcf,
         type: 2}
       propertyPath: SquareSize
-      value: 80
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546419349129280, guid: 93e896ce52b9386469f3397803b7afcf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93e896ce52b9386469f3397803b7afcf, type: 2}
@@ -878,8 +912,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &266042202
 MeshRenderer:
@@ -890,6 +926,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -905,6 +942,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -984,8 +1022,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &271726044
 MeshRenderer:
@@ -996,6 +1036,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1011,6 +1052,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1090,8 +1132,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &286437001
 MeshRenderer:
@@ -1102,6 +1146,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1117,6 +1162,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1196,8 +1242,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &293252145
 MeshRenderer:
@@ -1208,6 +1256,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1223,6 +1272,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1411,8 +1461,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &341537871
 MeshRenderer:
@@ -1423,6 +1475,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1438,6 +1491,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1562,8 +1616,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &365520297
 MeshRenderer:
@@ -1574,6 +1630,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1589,6 +1646,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1715,8 +1773,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &390051461
 MeshRenderer:
@@ -1727,6 +1787,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1742,6 +1803,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1868,8 +1930,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &443669811
 MeshRenderer:
@@ -1880,6 +1944,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1895,6 +1960,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1974,8 +2040,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &448854091
 MeshRenderer:
@@ -1986,6 +2054,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2001,6 +2070,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2080,8 +2150,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &455888951
 MeshRenderer:
@@ -2092,6 +2164,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2107,6 +2180,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2186,8 +2260,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &475780676
 MeshRenderer:
@@ -2198,6 +2274,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2213,6 +2290,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2298,8 +2376,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &504039164
 MeshRenderer:
@@ -2310,6 +2390,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2325,6 +2406,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2404,8 +2486,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &507040223
 MeshRenderer:
@@ -2416,6 +2500,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2431,6 +2516,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2510,8 +2596,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &509770777
 MeshRenderer:
@@ -2522,6 +2610,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2537,6 +2626,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2616,8 +2706,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &527913850
 MeshRenderer:
@@ -2628,6 +2720,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2643,6 +2736,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2722,8 +2816,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &528969513
 MeshRenderer:
@@ -2734,6 +2830,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2749,6 +2846,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -2831,6 +2929,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2846,6 +2945,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3168,8 +3268,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &724195728
 MeshRenderer:
@@ -3180,6 +3282,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3195,6 +3298,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3274,8 +3378,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &739241596
 MeshRenderer:
@@ -3286,6 +3392,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3301,6 +3408,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3380,8 +3488,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &746210510
 MeshRenderer:
@@ -3392,6 +3502,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3407,6 +3518,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3473,8 +3585,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &775112119
 MeshRenderer:
@@ -3485,6 +3599,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3500,6 +3615,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3592,8 +3708,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &802301099
 MeshRenderer:
@@ -3604,6 +3722,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3619,6 +3738,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3698,8 +3818,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &821840496
 MeshRenderer:
@@ -3710,6 +3832,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3725,6 +3848,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3804,8 +3928,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &831162019
 MeshRenderer:
@@ -3816,6 +3942,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3831,6 +3958,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3910,8 +4038,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &840437494
 MeshRenderer:
@@ -3922,6 +4052,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3937,6 +4068,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4016,8 +4148,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &842972190
 MeshRenderer:
@@ -4028,6 +4162,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4043,6 +4178,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4122,8 +4258,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &869588124
 MeshRenderer:
@@ -4134,6 +4272,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4149,6 +4288,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4228,8 +4368,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &872152046
 MeshRenderer:
@@ -4240,6 +4382,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4255,6 +4398,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4334,8 +4478,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &892795055
 MeshRenderer:
@@ -4346,6 +4492,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4361,6 +4508,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4440,8 +4588,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &895770753
 MeshRenderer:
@@ -4452,6 +4602,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4467,6 +4618,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4546,8 +4698,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &900040382
 MeshRenderer:
@@ -4558,6 +4712,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4573,6 +4728,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4652,8 +4808,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &901117283
 MeshRenderer:
@@ -4664,6 +4822,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4679,6 +4838,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4799,8 +4959,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &910878077
 MeshRenderer:
@@ -4811,6 +4973,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4826,6 +4989,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4905,8 +5069,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &916329513
 MeshRenderer:
@@ -4917,6 +5083,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4932,6 +5099,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5011,8 +5179,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &941734799
 MeshRenderer:
@@ -5023,6 +5193,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5038,6 +5209,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5117,8 +5289,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &942329703
 MeshRenderer:
@@ -5129,6 +5303,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5144,6 +5319,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5223,8 +5399,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &983371605
 MeshRenderer:
@@ -5235,6 +5413,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5250,6 +5429,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5329,8 +5509,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &988369529
 MeshRenderer:
@@ -5341,6 +5523,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5356,6 +5539,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5435,8 +5619,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1015217972
 MeshRenderer:
@@ -5447,6 +5633,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5462,6 +5649,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5541,8 +5729,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1017667503
 MeshRenderer:
@@ -5553,6 +5743,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5568,6 +5759,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5647,8 +5839,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1033869737
 MeshRenderer:
@@ -5659,6 +5853,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5674,6 +5869,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5753,8 +5949,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1067780684
 MeshRenderer:
@@ -5765,6 +5963,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5780,6 +5979,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5859,8 +6059,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1067867614
 MeshRenderer:
@@ -5871,6 +6073,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5886,6 +6089,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5965,8 +6169,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1078595602
 MeshRenderer:
@@ -5977,6 +6183,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5992,6 +6199,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6071,8 +6279,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1114738846
 MeshRenderer:
@@ -6083,6 +6293,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6098,6 +6309,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6177,8 +6389,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1130375997
 MeshRenderer:
@@ -6189,6 +6403,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6204,6 +6419,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6283,8 +6499,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1134390659
 MeshRenderer:
@@ -6295,6 +6513,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6310,6 +6529,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6389,8 +6609,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1138147810
 MeshRenderer:
@@ -6401,6 +6623,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6416,6 +6639,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6495,8 +6719,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1144418965
 MeshRenderer:
@@ -6507,6 +6733,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6522,6 +6749,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6601,8 +6829,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1154183056
 MeshRenderer:
@@ -6613,6 +6843,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6628,6 +6859,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6707,8 +6939,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1177042943
 MeshRenderer:
@@ -6719,6 +6953,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6734,6 +6969,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6824,6 +7060,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6839,6 +7076,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6912,8 +7150,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1226990001
 MeshRenderer:
@@ -6924,6 +7164,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6939,6 +7180,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7018,8 +7260,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1235170864
 MeshRenderer:
@@ -7030,6 +7274,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7045,6 +7290,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7246,8 +7492,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1286641414
 MeshRenderer:
@@ -7258,6 +7506,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7273,6 +7522,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7352,8 +7602,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1287280566
 MeshRenderer:
@@ -7364,6 +7616,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7379,6 +7632,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7458,8 +7712,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1301612675
 MeshRenderer:
@@ -7470,6 +7726,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7485,6 +7742,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7564,8 +7822,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1304515844
 MeshRenderer:
@@ -7576,6 +7836,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7591,6 +7852,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7670,8 +7932,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1317871847
 MeshRenderer:
@@ -7682,6 +7946,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7697,6 +7962,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7776,8 +8042,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1321396955
 MeshRenderer:
@@ -7788,6 +8056,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7803,6 +8072,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7882,8 +8152,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1327489363
 MeshRenderer:
@@ -7894,6 +8166,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7909,6 +8182,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7988,8 +8262,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1341464756
 MeshRenderer:
@@ -8000,6 +8276,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8015,6 +8292,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8094,8 +8372,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1351109359
 MeshRenderer:
@@ -8106,6 +8386,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8121,6 +8402,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8200,8 +8482,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1351275745
 MeshRenderer:
@@ -8212,6 +8496,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8227,6 +8512,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8411,8 +8697,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1419427340
 MeshRenderer:
@@ -8423,6 +8711,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8438,6 +8727,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8517,8 +8807,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1476650517
 MeshRenderer:
@@ -8529,6 +8821,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8544,6 +8837,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8623,8 +8917,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1487615039
 MeshRenderer:
@@ -8635,6 +8931,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8650,6 +8947,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8729,8 +9027,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1493438846
 MeshRenderer:
@@ -8741,6 +9041,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8756,6 +9057,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8835,8 +9137,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1494685864
 MeshRenderer:
@@ -8847,6 +9151,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8862,6 +9167,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -8941,8 +9247,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1525093868
 MeshRenderer:
@@ -8953,6 +9261,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8968,6 +9277,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9047,8 +9357,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1532672907
 MeshRenderer:
@@ -9059,6 +9371,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9074,6 +9387,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9153,8 +9467,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1534037327
 MeshRenderer:
@@ -9165,6 +9481,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9180,6 +9497,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9259,8 +9577,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1535385787
 MeshRenderer:
@@ -9271,6 +9591,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9286,6 +9607,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9365,8 +9687,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1547311402
 MeshRenderer:
@@ -9377,6 +9701,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9392,6 +9717,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9471,8 +9797,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1550216717
 MeshRenderer:
@@ -9483,6 +9811,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9498,6 +9827,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9577,8 +9907,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1569491466
 MeshRenderer:
@@ -9589,6 +9921,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9604,6 +9937,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9683,8 +10017,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1593809432
 MeshRenderer:
@@ -9695,6 +10031,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9710,6 +10047,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9789,8 +10127,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1608958815
 MeshRenderer:
@@ -9801,6 +10141,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9816,6 +10157,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9895,8 +10237,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1620026994
 MeshRenderer:
@@ -9907,6 +10251,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9922,6 +10267,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10001,8 +10347,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1645366057
 MeshRenderer:
@@ -10013,6 +10361,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10028,6 +10377,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10176,8 +10526,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1679382191
 MeshRenderer:
@@ -10188,6 +10540,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10203,6 +10556,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10282,8 +10636,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1694702390
 MeshRenderer:
@@ -10294,6 +10650,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10309,6 +10666,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10388,8 +10746,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1699964051
 MeshRenderer:
@@ -10400,6 +10760,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10415,6 +10776,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10568,8 +10930,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1802732068
 MeshRenderer:
@@ -10580,6 +10944,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10595,6 +10960,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10674,8 +11040,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1826486196
 MeshRenderer:
@@ -10686,6 +11054,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10701,6 +11070,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10780,8 +11150,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1828408260
 MeshRenderer:
@@ -10792,6 +11164,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10807,6 +11180,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10886,8 +11260,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1851678306
 MeshRenderer:
@@ -10898,6 +11274,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10913,6 +11290,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10992,8 +11370,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1880460742
 MeshRenderer:
@@ -11004,6 +11384,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11019,6 +11400,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11098,8 +11480,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1882975910
 MeshRenderer:
@@ -11110,6 +11494,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11125,6 +11510,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11204,8 +11590,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1903148882
 MeshRenderer:
@@ -11216,6 +11604,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11231,6 +11620,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11310,8 +11700,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1907371599
 MeshRenderer:
@@ -11322,6 +11714,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11337,6 +11730,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11416,8 +11810,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1925295711
 MeshRenderer:
@@ -11428,6 +11824,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11443,6 +11840,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11522,8 +11920,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1932147913
 MeshRenderer:
@@ -11534,6 +11934,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11549,6 +11950,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11628,8 +12030,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &1953113427
 MeshRenderer:
@@ -11640,6 +12044,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11655,6 +12060,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11808,8 +12214,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2038554714
 MeshRenderer:
@@ -11820,6 +12228,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11835,6 +12244,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11959,8 +12369,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2062102283
 MeshRenderer:
@@ -11971,6 +12383,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11986,6 +12399,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12065,8 +12479,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2075257512
 MeshRenderer:
@@ -12077,6 +12493,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12092,6 +12509,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12171,8 +12589,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2089244752
 MeshRenderer:
@@ -12183,6 +12603,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12198,6 +12619,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12277,8 +12699,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2103428119
 MeshRenderer:
@@ -12289,6 +12713,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12304,6 +12729,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12383,8 +12809,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2116709149
 MeshRenderer:
@@ -12395,6 +12823,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12410,6 +12839,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12489,8 +12919,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2122554317
 MeshRenderer:
@@ -12501,6 +12933,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12516,6 +12949,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12595,8 +13029,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2126154086
 MeshRenderer:
@@ -12607,6 +13043,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12622,6 +13059,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12701,8 +13139,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2130811075
 MeshRenderer:
@@ -12713,6 +13153,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12728,6 +13169,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12807,8 +13249,10 @@ MonoBehaviour:
   MoveToNormalVelocity: 0
   posAvg: {x: 0, y: 0, z: 0}
   negAvg: {x: 0, y: 0, z: 0}
+  AccAvg: {x: 0, y: 0, z: 0}
   Velocity: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  AccuratePos: {x: 0, y: 0, z: 0}
   ApparentAccel: {x: 0, y: 0, z: 0}
 --- !u!23 &2146035883
 MeshRenderer:
@@ -12819,6 +13263,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12834,6 +13279,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

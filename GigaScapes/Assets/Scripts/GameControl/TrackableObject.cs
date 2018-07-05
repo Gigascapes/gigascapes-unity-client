@@ -18,11 +18,13 @@ public class TrackableObject : MonoBehaviour {
 
     public Vector3 posAvg = Vector3.zero;
     public Vector3 negAvg = Vector3.zero;
+    public Vector3 AccAvg = Vector3.zero;
 
     public Vector3 Velocity = Vector3.zero; //normalized
     private Vector3 Velocity0 = Vector3.zero;
 
     public Vector3 TargetPos = Vector3.zero;
+    public Vector3 AccuratePos = Vector3.zero;
 
     public Vector3 ApparentAccel = Vector3.zero;
 
@@ -41,7 +43,7 @@ public class TrackableObject : MonoBehaviour {
 
         if(MoveToPosition)
         {
-            MoveToPos();
+            MoveToPos2();
         }
         else if(MoveToNormalVelocity)
         {
@@ -93,6 +95,28 @@ public class TrackableObject : MonoBehaviour {
             negAvg = negAvg / (float)negCount;
         }
 
+        int AccCount = 0;
+        foreach (KeyValuePair<int[], Detector> kvp in ParticleField.On)
+        {
+            if (kvp.Value.transform.position.x > (transform.position.x - Size) && kvp.Value.transform.position.x < (transform.position.x + Size))
+            {
+                if (kvp.Value.transform.position.z > (transform.position.z - Size) && kvp.Value.transform.position.z < (transform.position.z + Size))
+                {
+                    AccAvg += kvp.Value.transform.localPosition;
+                    AccCount++;
+                }
+            }
+        }
+        if (AccCount > 0)
+        {
+            AccAvg = AccAvg / (float)AccCount;
+        }
+
+        if(AccCount > DeltaThreshold*2)
+        {
+            AccuratePos = ParticleField.FromLocalToWorld(AccAvg);
+        }
+
         ///number of points good enough
         if (posCount >= DeltaThreshold && negCount >= DeltaThreshold)
         {
@@ -101,6 +125,7 @@ public class TrackableObject : MonoBehaviour {
                 (float)negCount / (float)posCount > DeltaRatio && (float)negCount / (float)posCount <= 1)
             {
                 TargetPos = ParticleField.FromLocalToWorld((posAvg + negAvg) / (float)2);
+               
                 Velocity = ParticleField.FromLocalToWDirection(posAvg - negAvg);
                 Velocity = Velocity.normalized;
                 ApparentAccel = Velocity - Velocity0;
@@ -126,6 +151,10 @@ public class TrackableObject : MonoBehaviour {
     void MoveToPos()
     {
         transform.position = TargetPos;
+    }
+    void MoveToPos2()
+    {
+        transform.position = AccuratePos;
     }
 
     void MoveOnConstVelocity()
