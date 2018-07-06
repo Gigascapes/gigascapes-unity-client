@@ -61,7 +61,8 @@ public class mqttTest : MonoBehaviour {
 
 	void OnGUI(){
 		if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
-			string payload = "[{\"x\":5.0,\"y\":5.0}, {\"x\":-5.0,\"y\":-5.0}]";
+			string positions = "[{\"x\":5.0,\"y\":5.0}, {\"x\":-5.0,\"y\":-5.0}]";
+			string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
 			Debug.Log("sending on topic:" + SelfPositionsTopic);
 			Debug.Log("payload:" + payload);
 			client.Publish(SelfPositionsTopic, 
