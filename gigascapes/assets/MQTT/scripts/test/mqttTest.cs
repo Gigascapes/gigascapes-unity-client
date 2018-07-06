@@ -16,6 +16,9 @@ public class mqttTest : MonoBehaviour {
 	private string topicPrefix = "gigascapes";
 	private int brokerPort = 12173;
 
+    private float x;
+    private float y;
+
 	private MqttClient client;
 	// Use this for initialization
 	void Start () {
@@ -53,11 +56,13 @@ public class mqttTest : MonoBehaviour {
 	{ 
 
 		Debug.Log("Received: " + System.Text.Encoding.UTF8.GetString(e.Message)  );
-	} 
+        
+    } 
 
 	void OnGUI(){
 		if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
-			string payload = "{\"positions\":[{\"x\":0.49822380106572,\"y\":0.23090586145648}]}";
+			string positions = "[{\"x\":5.0,\"y\":5.0}, {\"x\":-5.0,\"y\":-5.0}]";
+			string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
 			Debug.Log("sending on topic:" + SelfPositionsTopic);
 			Debug.Log("payload:" + payload);
 			client.Publish(SelfPositionsTopic, 
@@ -65,8 +70,15 @@ public class mqttTest : MonoBehaviour {
 			Debug.Log("sent");
 		}
 	}
-	// Update is called once per frame
-	void Update () {
 
+    public void moveTarget(float x, float y)
+    {
+        gameObject.transform.position = new Vector2(x, y);
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        moveTarget(x, y);
 	}
 }
