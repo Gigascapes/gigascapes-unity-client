@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
 
     public float teamOneScore;
     public float teamTwoScore;
@@ -11,28 +13,61 @@ public class GameManager : MonoBehaviour
     public Collider2D TopGoal;
     public Collider2D BotGoal;
 
-	// Use this for initialization
-	void Start ()
+    [SerializeField]
+    public List<GameObject> AsteroidTypes;
+    [SerializeField]
+    public List<GameObject> ShipTypes;
+    [SerializeField]
+    public List<GameObject> MineTypes;
+
+    private List<TrackableObject> TrackedList;
+    //private Dictionary<> KillList;
+
+    void Start ()
     {
-        teamOneScore = 0;
-        teamTwoScore = 0;
+        Instance = this;
+        ResetGame();
+        InvokeRepeating("SpawnAsteroid", 0.5f, 5.0f);
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-
+        if (Input.GetKeyDown("space"))
+            SpawnAsteroid();
 	}
 
-    void topGoalScore()
+    private void ResetGame()
     {
-        teamTwoScore += 100;
+        teamOneScore = 0;
+        teamTwoScore = 0;
+        
     }
 
-    void botGoalScore()
+    private void ClearBoard()
     {
-        teamOneScore += 100;
+
     }
 
+    public void ScoreGoal(Collider2D collider, GameObject asteroid, bool homeTeam)
+    {
+       if(homeTeam == true && collider == BotGoal)
+       {
+            Debug.Log("Scored for the home team!");
+       }
+       else
+        {
+            Debug.Log("Other Team scored!");
+        }
+        Debug.Log("ScoreGoal Called");
+        ObjectPooler.Instance.ReturnToPool("Asteroid", asteroid);
+    }
+
+    public void SpawnAsteroid()
+    {
+        ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f)));
+    }
+
+   
 
 }

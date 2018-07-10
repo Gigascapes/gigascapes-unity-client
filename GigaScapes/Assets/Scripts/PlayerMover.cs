@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
+    private int PlayerID = 001;
     Vector2 thisVec;
     Vector2 mouseVec;
     Vector2 targetVec;
@@ -14,7 +15,6 @@ public class PlayerMover : MonoBehaviour
 
     Rigidbody2D shipRB;
     Collider2D shipShield;
-    public AnimationCurve forceOverDistance;
     public bool TrackMouse = true;
 
 	// Use this for initialization
@@ -45,12 +45,18 @@ public class PlayerMover : MonoBehaviour
 
         if(TrackMouse)
         {
-            //forceCalc(mouseVec - thisVec, (mouseVec - thisVec).magnitude);
             gameObject.transform.position =  Vector2.SmoothDamp(thisVec, mouseVec, ref vec, sDampTime, 15.0f, Time.deltaTime);
+            transform.right = mouseVec - thisVec;
+            /*
+            Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            diff.Normalize();
+ 
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+            */
         }
         else
         {
-            //forceCalc(targetVec - thisVec, (targetVec - thisVec).magnitude);
             gameObject.transform.position = Vector2.SmoothDamp(thisVec, targetVec, ref vec, sDampTime, 15.0f, Time.deltaTime);
         }
         
@@ -67,18 +73,18 @@ public class PlayerMover : MonoBehaviour
             if(collided != null)
             {
                 Debug.Log("Collision With Asteroid!");
-                collided.AddForceAtPosition(new Vector2(collided.gameObject.transform.position.x - gameObject.transform.position.x,
-                    collided.gameObject.transform.position.y - gameObject.transform.position.y), 
+                collided.AddForceAtPosition(new Vector2((collided.gameObject.transform.position.x - gameObject.transform.position.x) * 20,
+                    (collided.gameObject.transform.position.y - gameObject.transform.position.y) * 50), 
                     contact.point);
             }
 
         }
-        else
-            Debug.Log("Collision!");
     }
-
+    
+    /*
     void forceCalc(Vector2 heading, float distance)
     {
         shipRB.AddForce(heading.normalized * forceOverDistance.Evaluate(distance));
     }
+    */
 }
