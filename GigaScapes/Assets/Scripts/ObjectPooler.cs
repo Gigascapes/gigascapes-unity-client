@@ -43,6 +43,7 @@ public class ObjectPooler : MonoBehaviour
                 GameObject obj = Instantiate(pool.prefab[Random.Range(0, pool.prefab.Count-1)]);
                 string netid = Random.Range(10000, 99999).ToString();
                 obj.GetComponent<NetworkID>().NetID = netid;
+                obj.GetComponent<NetworkID>().Type = pool.ID;
                 ManagedObjects.Add(netid, obj);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
