@@ -688,7 +688,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.4
+      value: -18.2
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -721,19 +721,19 @@ Prefab:
     - target: {fileID: 114850793204356158, guid: ada4c2060194cba4288c674ff15f1c6d,
         type: 2}
       propertyPath: ComCode
-      value: COM4
+      value: COM8
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalScale.x
-      value: 3.5
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3.5
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalScale.z
-      value: 3.5
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4110348243544764, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -742,11 +742,16 @@ Prefab:
     - target: {fileID: 114447853017571682, guid: ada4c2060194cba4288c674ff15f1c6d,
         type: 2}
       propertyPath: ComCode
-      value: COM5
+      value: COM3
       objectReference: {fileID: 0}
     - target: {fileID: 1877091729479604, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114203917814984552, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: ComCode
+      value: COM4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
@@ -768,7 +773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &187570811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12310,14 +12315,14 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1921721035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1921721034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee16594eae23d7645bd8e56808afc0d8, type: 3}
   m_Name: 
