@@ -27,10 +27,12 @@ public class ObjectPooler : MonoBehaviour
 
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, GameObject> ManagedObjects;
 
     void Start ()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        ManagedObjects = new Dictionary<string, GameObject>();
 
         foreach(Pool pool in pools)
         {
@@ -39,13 +41,19 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab[Random.Range(0, pool.prefab.Count-1)]);
+                string netid = Random.Range(10000, 99999).ToString();
+                obj.GetComponent<NetworkID>().NetID = netid;
+                ManagedObjects.Add(netid, obj);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
             poolDictionary.Add(pool.ID, objectPool);
         }
+
+        GameManager.Instance.ManagedObjects = ManagedObjects;
 	}
 	
+
 	public GameObject SpawnFromPool(string tag, Vector2 position)
     {
         if(!poolDictionary.ContainsKey(tag))

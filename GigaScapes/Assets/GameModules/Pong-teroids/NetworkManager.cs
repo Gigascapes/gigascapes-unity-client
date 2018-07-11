@@ -112,7 +112,6 @@ public class NetworkManager : MonoBehaviour
                 //Debug.Log("key " + mostRecentIndex + "not found.");
             }
         }
-
     }
 
     // Update is called once per frame
