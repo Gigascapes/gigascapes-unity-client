@@ -2015,7 +2015,7 @@ GameObject:
   - component: {fileID: 388887797}
   - component: {fileID: 388887796}
   - component: {fileID: 388887795}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BumperR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2386,13 @@ Prefab:
       propertyPath: m_Name
       value: P1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114426091088838084, guid: 9830a19745fa7da48a2e2129048b1f09,
+        type: 2}
+      propertyPath: Managed
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 33048733853378206, guid: 9830a19745fa7da48a2e2129048b1f09, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9830a19745fa7da48a2e2129048b1f09, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &425438350 stripped
@@ -10674,7 +10680,7 @@ GameObject:
   - component: {fileID: 1015603531}
   - component: {fileID: 1015603530}
   - component: {fileID: 1015603529}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BumperB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13875,7 +13881,13 @@ Prefab:
       propertyPath: m_Name
       value: P2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114426091088838084, guid: 9830a19745fa7da48a2e2129048b1f09,
+        type: 2}
+      propertyPath: Managed
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 33048733853378206, guid: 9830a19745fa7da48a2e2129048b1f09, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9830a19745fa7da48a2e2129048b1f09, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1340194020
@@ -17303,7 +17315,7 @@ GameObject:
   - component: {fileID: 1775533877}
   - component: {fileID: 1775533876}
   - component: {fileID: 1775533875}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BumperT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18821,7 +18833,7 @@ GameObject:
   - component: {fileID: 1953498519}
   - component: {fileID: 1953498518}
   - component: {fileID: 1953498517}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BumperL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19025,7 +19037,7 @@ MonoBehaviour:
   CurrentLocalPlayers:
   - {fileID: 1398111532}
   - {fileID: 1280213164}
-  TrackMouse: 1
+  TrackMouse: 0
 --- !u!114 &1975009550
 MonoBehaviour:
   m_ObjectHideFlags: 0

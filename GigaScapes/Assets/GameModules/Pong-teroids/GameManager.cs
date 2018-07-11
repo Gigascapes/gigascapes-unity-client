@@ -23,14 +23,27 @@ public class GameManager : MonoBehaviour
     private Vector2 p1StartVector;
     private Vector2 p2StartVector;
 
+    private Dictionary<string, GameObject> managedObjects;
+    public Dictionary<string, GameObject> ManagedObjects { get; set; }
+
+    private bool IsMaster;
+
+    private void Awake()
+    {
+        ManagedObjects = new Dictionary<string, GameObject>();
+        LocalPlayersObj = new List<GameObject>();
+    }
+
     void Start ()
     {
         Instance = this;
         ResetGame();
-        InvokeRepeating("SpawnAsteroid", 0.5f, 5.0f);
-        LocalPlayersObj = new List<GameObject>();
+        if(IsMaster)
+            InvokeRepeating("SpawnAsteroid", 0.5f, 5.0f);
+
         LocalPlayersObj.Add(ObjectPooler.Instance.SpawnFromPool("Ship", new Vector2(0, 0)));
         LocalPlayersObj.Add(ObjectPooler.Instance.SpawnFromPool("Ship", new Vector2(0, 0)));
+
         p1StartVector = CurrentLocalPlayers[0].transform.position;
         p2StartVector = CurrentLocalPlayers[1].transform.position;
     }
@@ -45,8 +58,14 @@ public class GameManager : MonoBehaviour
             SpawnMineL();
         if (Input.GetKeyDown("s"))
             SpawnMineR();
+
         for(int i = 0; i < LocalPlayersObj.Count; i++)
             MovePlayer(LocalPlayersObj[i],i);
+    }
+
+    public void AddToManagedDictionary(string NetID, GameObject obj)
+    {
+        ManagedObjects.Add(NetID, obj);
     }
 
     private void ResetGame()
@@ -106,8 +125,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnAsteroid()
     {
-        GameObject obj = ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f)));
-        MoveEntity(obj, new Vector2(1, 0), obj.transform.position, 50);
+        ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f))); 
     }
 
     public void SpawnMineR()
@@ -118,7 +136,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnMineL()
     {
-        ObjectPooler.Instance.SpawnFromPool("Mine", new Vector2(Random.Range(-11.0f, -15.0f), Random.Range(-9.0f, 9.0f)));
+        GameObject obj = ObjectPooler.Instance.SpawnFromPool("Mine", new Vector2(Random.Range(-11.0f, -15.0f), Random.Range(-9.0f, 9.0f)));
+        MoveEntity(obj, new Vector2(1, 0), obj.transform.position, 50);
     }
 
 }

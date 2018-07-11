@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33555429442855754}
   - component: {fileID: 23318680718828632}
   - component: {fileID: 114349270326918372}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Testmine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4236570851830476}
   - component: {fileID: 108497242760349478}
   - component: {fileID: 114580899098667352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 4036954458782776}
   - component: {fileID: 50463495155595868}
   - component: {fileID: 58883342061784418}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TestMine1
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4498234312072630}
   - component: {fileID: 108753638904200890}
   - component: {fileID: 114854099673024524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
