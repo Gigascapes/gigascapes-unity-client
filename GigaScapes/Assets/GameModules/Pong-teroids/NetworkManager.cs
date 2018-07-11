@@ -78,12 +78,12 @@ public class NetworkManager : MonoBehaviour
         {
             foreach (MqttMessage position in myMessages.positions)
             {
-                if (position.type == "position") {
+                if (position.messageType == "position") {
 
                 }
                 else
                 {
-                    Debug.Log("received position type: " + position.type);
+                    Debug.Log("received position type: " + position.messageType);
                 }
                 messageHistory[messageHistoryPosition++] = messageId++;  //increment iterator and message count (until we receive from server)
                 if (messageHistoryPosition == numberOfMessagesToStore)
@@ -169,7 +169,7 @@ public class NetworkManager : MonoBehaviour
         foreach (KeyValuePair<string, GameObject> entry in objects)
         {
             //Debug.Log("key " + entry.Key + " value: " + entry.Value);
-            positions += "{  \"type\":" + "\"position\"" + "\"objectId\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
+            positions += "{  \"MessageType\":" + "\"position\"" + ",\"ObjectType\":" + entry.Value.GetComponent<NetworkID>().Type + ",\"objectId\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
         }
         positions += "]";
         //Debug.Log("positions: " + positions);
@@ -210,7 +210,8 @@ public class MWrapper
 [Serializable]
 public class MqttMessage
 {
-    public string type;
+    public string messageType;
+    public string objectType;
     public string objectId;    
     public float x;
     public float y;
