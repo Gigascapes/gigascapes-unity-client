@@ -78,6 +78,13 @@ public class NetworkManager : MonoBehaviour
         {
             foreach (MqttMessage position in myMessages.positions)
             {
+                if (position.type == "position") {
+
+                }
+                else
+                {
+                    Debug.Log("received position type: " + position.type);
+                }
                 messageHistory[messageHistoryPosition++] = messageId++;  //increment iterator and message count (until we receive from server)
                 if (messageHistoryPosition == numberOfMessagesToStore)
                 {
@@ -125,24 +132,35 @@ public class NetworkManager : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(sendFrequency);
-            string positions = "[{  \"type\":" + "\"type.Message\"" + ",\"objectid2\":" + "\"objectid2\"" +  ",\"x\":" + player1.transform.position.x + ",\"y\":" + player1.transform.position.y +"}]";
-            string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
+            //string positions = "[{  \"type\":" + "\"type.Message\"" + ",\"objectId\":" + "\"objectid2\"" +  ",\"x\":" + player1.transform.position.x + ",\"y\":" + player1.transform.position.y +"}]";
+            //string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
 
             //we may want this payload sent on a separate thread
             //Debug.Log("sending on topic:" + SelfPositionsTopic);
             //Debug.Log("payload:" + payload);
-            client.Publish(SelfPositionsTopic,
-                System.Text.Encoding.UTF8.GetBytes(payload), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+            
             //Debug.Log("sent");
-            MoveTarget();
-            //SendPackets();
+            //MoveTarget();
+            
+            SendPackets(ObjectPooler.Instance.ManagedObjects);
         }
     }
 
 
     public void SendEventPackets(Dictionary<string, GameObject> events)
     {
-
+        string positions = "[";
+        foreach (KeyValuePair<string, GameObject> entry in events)
+        {
+            //Debug.Log("key " + entry.Key + " value: " + entry.Value);
+            positions += "{  \"type\":" + entry.Key + "\"objectId\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
+        }
+        positions += "]";
+        //Debug.Log("positions: " + positions);
+        string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
+        Debug.Log("payload: " + payload);
+        client.Publish(SelfPositionsTopic,
+                System.Text.Encoding.UTF8.GetBytes(payload), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
     }
 
     public void SendPackets(Dictionary<string, GameObject> objects)
@@ -150,10 +168,15 @@ public class NetworkManager : MonoBehaviour
         string positions = "[";
         foreach (KeyValuePair<string, GameObject> entry in objects)
         {
-            positions += "{  \"type\":" + "\"position\"" + "\"objectid\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
+            //Debug.Log("key " + entry.Key + " value: " + entry.Value);
+            positions += "{  \"type\":" + "\"position\"" + "\"objectId\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
         }
         positions += "]";
+        //Debug.Log("positions: " + positions);
         string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
+        Debug.Log("payload: " + payload);
+        client.Publish(SelfPositionsTopic,
+                System.Text.Encoding.UTF8.GetBytes(payload), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
     }    
 
 
@@ -187,6 +210,8 @@ public class MWrapper
 [Serializable]
 public class MqttMessage
 {
+    public string type;
+    public string objectId;    
     public float x;
     public float y;
     public Int64 serverUTCTime;
