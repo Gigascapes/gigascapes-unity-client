@@ -13,15 +13,7 @@ public class GameManager : MonoBehaviour
     public Collider2D TopGoal;
     public Collider2D BotGoal;
 
-    [SerializeField]
-    public List<GameObject> AsteroidTypes;
-    [SerializeField]
-    public List<GameObject> ShipTypes;
-    [SerializeField]
-    public List<GameObject> MineTypes;
-
-    private List<TrackableObject> TrackedList;
-    //private Dictionary<> KillList;
+    public List<GameObject> CurrentLocalPlayers;
 
     void Start ()
     {
@@ -35,13 +27,14 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
             SpawnAsteroid();
+
+
 	}
 
     private void ResetGame()
     {
         teamOneScore = 0;
-        teamTwoScore = 0;
-        
+        teamTwoScore = 0;  
     }
 
     private void ClearBoard()
@@ -59,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Other Team scored!");
         }
-        Debug.Log("ScoreGoal Called");
+        //Debug.Log("ScoreGoal Called");
         ObjectPooler.Instance.ReturnToPool("Asteroid", asteroid);
     }
 
@@ -68,6 +61,15 @@ public class GameManager : MonoBehaviour
         ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f)));
     }
 
-   
+    public void SpawnMineR()
+    {
+        ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2(Random.Range(11.0f, 15.0f), Random.Range(-9.0f, 9.0f)));
+    }
+
+    public void SpawnMineL()
+    {
+        ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2(Random.Range(-11.0f, -15.0f), Random.Range(-9.0f, 9.0f)));
+    }
+
 
 }

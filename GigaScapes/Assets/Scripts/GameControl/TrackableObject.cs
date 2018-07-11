@@ -35,6 +35,8 @@ public class TrackableObject : MonoBehaviour {
 
     private Dictionary<int[], Detector> LocalKillList = new Dictionary<int[], Detector>();
 
+
+
     //public Vector3 Garbagge;
 
     private void Start()

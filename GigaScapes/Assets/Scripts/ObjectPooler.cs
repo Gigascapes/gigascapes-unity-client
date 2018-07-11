@@ -9,7 +9,7 @@ public class ObjectPooler : MonoBehaviour
     public class Pool
     {
         public string ID;
-        public GameObject prefab;
+        public List<GameObject> prefab;
         public int size;
         private int Enabled = 0;
     }
@@ -38,7 +38,7 @@ public class ObjectPooler : MonoBehaviour
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab[Random.Range(0, pool.prefab.Count-1)]);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

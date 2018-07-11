@@ -14,14 +14,25 @@ public class PlayerMover : MonoBehaviour
     public GameObject trackerOBJ;
 
     Rigidbody2D shipRB;
-    Collider2D shipShield;
+    public GameObject shipShield;
+    Collider2D shipShieldCol;
     public bool TrackMouse = true;
+
+
+    public bool shieldDown = false;
 
 	// Use this for initialization
 	void Awake ()
     {
         shipRB = gameObject.GetComponentInChildren<Rigidbody2D>();
-        shipShield = gameObject.GetComponentInChildren<Collider2D>();
+        shipShieldCol = gameObject.GetComponentInChildren<Collider2D>();
+        //shipShield = shipShieldCol.gameObject;
+    }
+
+    private void FixedUpdate()
+    {
+        if (shieldDown)
+            StartCoroutine("ShieldRegen");
     }
 
     //We'll use this to update the Player's target when pulled from the ObjectPool.
@@ -67,7 +78,7 @@ public class PlayerMover : MonoBehaviour
         Rigidbody2D collided;
         ContactPoint2D contact = collision.contacts[0];
 
-        if(collision.gameObject.layer == 8)
+        if(collision.gameObject.tag == "Asteroid")
         {
             collided = collision.gameObject.GetComponent<Rigidbody2D>();
             if(collided != null)
@@ -79,8 +90,25 @@ public class PlayerMover : MonoBehaviour
             }
 
         }
+        else if(collision.gameObject.tag == "Mine")
+        {
+            Debug.Log("Collision With Mine!");
+            shieldDown = true;
+        }
     }
     
+    IEnumerator ShieldRegen()
+    {
+        shipShield.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        for(float f = 0.1f; f < 1; f+= 0.1f)
+        {
+            shipShield.transform.localScale = new Vector3(f,f,f);
+            yield return null;
+        }
+        shieldDown = false;
+        yield return null;
+    }
+
     /*
     void forceCalc(Vector2 heading, float distance)
     {
