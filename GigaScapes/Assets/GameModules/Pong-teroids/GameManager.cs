@@ -66,7 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void AddToManagedDictionary(string NetID, GameObject obj)
     {
-        ManagedObjects.Add(NetID, obj);
+        if(ManagedObjects.ContainsKey(NetID) == false)
+            ManagedObjects.Add(NetID, obj);
     }
 
     private void ResetGame()
@@ -137,7 +138,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnAsteroid()
     {
-        ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f))); 
+       GameObject obj = ObjectPooler.Instance.SpawnFromPool("Asteroid", new Vector2 (Random.Range(-9.0f,9.0f), Random.Range(-4.0f, 4.0f)));
+        AddToManagedDictionary(obj.GetComponent<NetworkID>().NetID, obj);
     }
 
     public void SpawnMineR()
