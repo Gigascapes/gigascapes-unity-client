@@ -8,6 +8,13 @@ public class TrackableManager : MonoBehaviour {
 
     Dictionary<int[], Detector> killList = new Dictionary<int[], Detector>();
 
+    public static TrackableManager Tracker;
+
+    private void Start()
+    {
+        Tracker = this; 
+    }
+
     private void Update()
     {
         for(int i = 0; i < TrackedObjects.Count; i++)
