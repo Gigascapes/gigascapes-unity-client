@@ -6,5 +6,6 @@ public class NetworkID : MonoBehaviour
 {
 
     public string NetID;
+    public bool ToSync;
 	
 }

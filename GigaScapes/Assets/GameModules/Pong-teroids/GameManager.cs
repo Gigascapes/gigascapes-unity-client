@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
     Vector2 vec = Vector2.one;
 
     private GameObject Player;
-    private List<GameObject> LocalPlayersObj;
+    public List<GameObject> LocalPlayersObj;
     private Vector2 p1StartVector;
     private Vector2 p2StartVector;
 
     private Dictionary<string, GameObject> managedObjects;
     public Dictionary<string, GameObject> ManagedObjects { get; set; }
 
-    private bool IsMaster;
+    private bool IsMaster = true;
 
     private void Awake()
     {
@@ -59,8 +59,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("s"))
             SpawnMineR();
 
-        for(int i = 0; i < LocalPlayersObj.Count; i++)
-            MovePlayer(LocalPlayersObj[i],i);
+        //for(int i = 0; i < LocalPlayersObj.Count; i++)
+        //MovePlayer(LocalPlayersObj[i],i);
+        MovePlayer(LocalPlayersObj[0], 0);
     }
 
     public void AddToManagedDictionary(string NetID, GameObject obj)
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void ScoreGoal(Collider2D collider, GameObject asteroid, bool homeTeam)
     {
-       if(homeTeam == true && collider == BotGoal)
+       if(homeTeam == true && collider == TopGoal)
        {
             Debug.Log("Scored for the home team!");
        }
@@ -105,6 +106,17 @@ public class GameManager : MonoBehaviour
             player.transform.position = Vector2.SmoothDamp(thisVec, targetVec, ref vec, sDampTime, 15.0f, Time.deltaTime);
             player.transform.right = targetVec - thisVec;
         }
+    }
+
+    public void MovePlayer(GameObject player, int i, Vector2 destination)
+    {
+        Vector2 thisVec = player.transform.position;
+        //Vector2 mouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        
+            player.transform.position = Vector2.SmoothDamp(thisVec, destination, ref vec, sDampTime, 15.0f, Time.deltaTime);
+            player.transform.right = destination - thisVec;
+        
     }
 
     //Blanket function to move a non-local-player entity in the game world and report it to the network manager

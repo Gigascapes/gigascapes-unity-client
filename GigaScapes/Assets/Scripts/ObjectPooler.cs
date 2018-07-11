@@ -49,7 +49,7 @@ public class ObjectPooler : MonoBehaviour
             }
             poolDictionary.Add(pool.ID, objectPool);
         }
-
+        
         GameManager.Instance.ManagedObjects = ManagedObjects;
 	}
 	
