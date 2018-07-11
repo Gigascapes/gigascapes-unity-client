@@ -303,11 +303,17 @@ public class TrackableObject : MonoBehaviour {
 
     void MoveToPos()
     {
-        transform.position = TargetPos;
+        if (TargetPos != Vector3.zero)
+        {
+            transform.position = TargetPos;
+        }
     }
     void MoveToPos2()
     {
-        transform.position = AccuratePos;
+        if (AccuratePos != Vector3.zero)
+        {
+            transform.position = AccuratePos;
+        }
     }
 
     void MoveOnConstVelocity()
