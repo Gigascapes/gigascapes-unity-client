@@ -72,7 +72,7 @@ public class NetworkManager : MonoBehaviour
     void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
         string response = System.Text.Encoding.UTF8.GetString(e.Message);
-        //Debug.Log("Received: " + response);
+        Debug.Log("Received: " + response);
         myMessages = JsonUtility.FromJson<MWrapper>(response);
         if (myMessages.clientId != clientId)
         {
@@ -126,7 +126,7 @@ public class NetworkManager : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(sendFrequency);
-            string positions = "[{\"x\":" + player1.transform.position.x + ",\"y\":" + player1.transform.position.y + "}]";
+            string positions = "[{  \"type\":" + "\"type.Message\"" + ",\"objectid2\":" + "\"objectid2\"" +  ",\"x\":" + player1.transform.position.x + ",\"y\":" + player1.transform.position.y +"}]";
             string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
 
             //we may want this payload sent on a separate thread
@@ -136,8 +136,27 @@ public class NetworkManager : MonoBehaviour
                 System.Text.Encoding.UTF8.GetBytes(payload), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
             //Debug.Log("sent");
             MoveTarget();
+            //SendPackets();
         }
     }
+
+
+    public void SendEventPackets(Dictionary<string, GameObject> events)
+    {
+
+    }
+
+    public void SendPackets(Dictionary<string, GameObject> objects)
+    {
+        string positions = "[";
+        foreach (KeyValuePair<string, GameObject> entry in objects)
+        {
+            positions += "{  \"type\":" + "\"position\"" + "\"objectid\":" + entry.Key + ",\"x\":" + entry.Value.transform.position.x + ",\"y\":" + entry.Value.transform.position.y + "}";
+        }
+        positions += "]";
+        string payload = "{ \"clientId\": \"" + clientId + "\",\"positions\":" + positions + "}";
+    }    
+
 
 
     private int FindOldest()
