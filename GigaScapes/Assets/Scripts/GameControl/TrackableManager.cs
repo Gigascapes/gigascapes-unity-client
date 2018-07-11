@@ -17,6 +17,7 @@ public class TrackableManager : MonoBehaviour {
 
     private void Update()
     {
+        killList.Clear();
         for(int i = 0; i < TrackedObjects.Count; i++)
         {
             TrackedObjects[i].Managed = true;
