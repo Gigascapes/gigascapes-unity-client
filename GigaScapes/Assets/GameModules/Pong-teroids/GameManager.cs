@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, GameObject> managedObjects;
     public Dictionary<string, GameObject> ManagedObjects { get; set; }
 
-    private bool IsMaster = true;
+    public bool IsMaster = true;
 
     private void Awake()
     {

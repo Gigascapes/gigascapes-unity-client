@@ -31,24 +31,34 @@ public class ObjectPooler : MonoBehaviour
 
     void Start ()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        ManagedObjects = new Dictionary<string, GameObject>();
-
-        foreach(Pool pool in pools)
+        if (GameManager.Instance.IsMaster == true)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+            poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            ManagedObjects = new Dictionary<string, GameObject>();
 
-            for (int i = 0; i < pool.size; i++)
+            foreach (Pool pool in pools)
             {
-                GameObject obj = Instantiate(pool.prefab[Random.Range(0, pool.prefab.Count-1)]);
-                string netid = Random.Range(10000, 99999).ToString();
-                obj.GetComponent<NetworkID>().NetID = netid;
-                obj.GetComponent<NetworkID>().Type = pool.ID;
-                ManagedObjects.Add(netid, obj);
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
+                Queue<GameObject> objectPool = new Queue<GameObject>();
+
+                for (int i = 0; i < pool.size; i++)
+                {
+                    GameObject obj = Instantiate(pool.prefab[Random.Range(0, pool.prefab.Count - 1)]);
+                    string netid = Random.Range(10000, 99999).ToString();
+                    obj.GetComponent<NetworkID>().NetID = netid;
+                    obj.GetComponent<NetworkID>().Type = pool.ID;
+                    ManagedObjects.Add(netid, obj);
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
+                }
+                poolDictionary.Add(pool.ID, objectPool);
             }
-            poolDictionary.Add(pool.ID, objectPool);
+        }
+        else
+        {
+            poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            //ManagedObjects = whatever;
+
+            
         }
 	}
 	
