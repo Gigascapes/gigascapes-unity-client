@@ -20,6 +20,7 @@ namespace Gigascapes.SystemDebug
 		private MeshCollider mc =null;
 
         public bool FillIn = false;
+        public float FillLevel = 35f;
 
         void Awake()
         {
@@ -52,7 +53,8 @@ namespace Gigascapes.SystemDebug
                 Vector3 inputV = Quaternion.Euler(0, 0, -1f * m_data[i].theta) * Vector3.down * m_data[i].distant * 0.001f;
                 if (m_data[i].quality <= 0 && i != 0 && FillIn)
                 {
-                    inputV = m_vert[i - 1];
+                    //inputV = m_vert[i - 1];
+                    inputV = Quaternion.Euler(0, 0, -1f * m_data[i].theta) * Vector3.down * FillLevel * 0.001f;
                 }
                     //m_vert.Add(new Vector3(-inputV.x,inputV.y,0));
                 m_vert.Add(inputV);

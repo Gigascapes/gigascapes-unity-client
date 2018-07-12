@@ -256,7 +256,7 @@ public class TrackableObject : MonoBehaviour {
                 {
                     if (kvp.Value.transform.position.z > (transform.position.z - Halfsize) && kvp.Value.transform.position.z < (transform.position.z + Halfsize))
                     {
-                        AccAvg += kvp.Value.transform.localPosition;
+                        AccAvg += kvp.Value.transform.position;
                         AccCount++;
                     }
                 }
@@ -269,7 +269,8 @@ public class TrackableObject : MonoBehaviour {
 
         if (AccCount > DeltaThreshold * 2)
         {
-            AccuratePos = ParticleField.FromLocalToWorld(AccAvg);
+            //AccuratePos = ParticleField.FromLocalToWorld(AccAvg);
+            AccuratePos = AccAvg;
         }
 
         ///number of points good enough
@@ -298,8 +299,8 @@ public class TrackableObject : MonoBehaviour {
 
     void VectorDebug()
     {
-        Debug.DrawLine(TargetPos, TargetPos + Vector3.up, Color.yellow);
-        Debug.DrawLine(transform.position, TargetPos, Color.cyan);
+        Debug.DrawLine(AccuratePos, AccuratePos + Vector3.up, Color.yellow);
+        Debug.DrawLine(transform.position, AccuratePos, Color.cyan);
         Debug.DrawLine(transform.position, transform.position + Velocity * 10, Color.green);
     }
 

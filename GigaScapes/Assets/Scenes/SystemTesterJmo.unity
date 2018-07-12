@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -186,7 +186,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -304,7 +304,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -387,9 +387,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -416,7 +416,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -528,7 +528,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -640,7 +640,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -752,6 +752,36 @@ Prefab:
         type: 2}
       propertyPath: ComCode
       value: COM4
+      objectReference: {fileID: 0}
+    - target: {fileID: 23777316845553764, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91873b0c144477f49b34af92888be3e2, type: 2}
+    - target: {fileID: 23325741815183108, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5c8844e8bcfb2141a1e06bce049f53a, type: 2}
+    - target: {fileID: 23347113886962910, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4452a26fdeb889a44be0ffdfe6bf89df, type: 2}
+    - target: {fileID: 114313636338513654, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: FillLevel
+      value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114365125967831564, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: FillLevel
+      value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114332152967738440, guid: ada4c2060194cba4288c674ff15f1c6d,
+        type: 2}
+      propertyPath: FillLevel
+      value: 9000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ada4c2060194cba4288c674ff15f1c6d, type: 2}
@@ -1007,9 +1037,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -1036,7 +1066,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1119,7 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1148,7 +1178,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1231,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1260,7 +1290,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1343,7 +1373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1372,7 +1402,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1564,7 +1594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1593,7 +1623,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1721,7 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1750,7 +1780,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1836,6 +1866,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &379249322 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4969388930380818, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 207440592}
 --- !u!1 &390051458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,7 +1915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -1909,7 +1944,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2132,7 +2167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2161,7 +2196,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2244,7 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2273,7 +2308,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2356,7 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2385,7 +2420,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2468,7 +2503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2497,7 +2532,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2586,7 +2621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2615,7 +2650,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2698,7 +2733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2727,7 +2762,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2810,9 +2845,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -2839,7 +2874,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2922,7 +2957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -2951,7 +2986,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3034,7 +3069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -3063,7 +3098,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3488,9 +3523,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -3517,7 +3552,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3600,7 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -3629,7 +3664,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3712,9 +3747,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -3741,7 +3776,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3811,7 +3846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -3840,7 +3875,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3936,7 +3971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -3965,7 +4000,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4048,7 +4083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4077,7 +4112,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4166,7 +4201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4195,7 +4230,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4278,9 +4313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -4307,7 +4342,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4390,7 +4425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4419,7 +4454,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4502,7 +4537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4531,7 +4566,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4614,7 +4649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4643,7 +4678,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4726,7 +4761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -4755,7 +4790,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4838,9 +4873,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -4867,7 +4902,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4950,9 +4985,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -4979,7 +5014,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5062,7 +5097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -5091,7 +5126,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5215,7 +5250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -5244,7 +5279,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5327,9 +5362,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -5356,7 +5391,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5439,9 +5474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -5468,7 +5503,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5551,9 +5586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -5580,7 +5615,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5663,7 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -5692,7 +5727,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5775,7 +5810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -5804,7 +5839,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5893,7 +5928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -5922,7 +5957,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6005,7 +6040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6034,7 +6069,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6117,7 +6152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6146,7 +6181,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6229,7 +6264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6258,7 +6293,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6341,9 +6376,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -6370,7 +6405,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6453,7 +6488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6482,7 +6517,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6565,9 +6600,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -6594,7 +6629,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6677,7 +6712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6706,7 +6741,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6789,7 +6824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6818,7 +6853,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6901,7 +6936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -6930,7 +6965,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7013,7 +7048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -7042,7 +7077,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7125,7 +7160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -7154,7 +7189,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7237,9 +7272,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -7266,7 +7301,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7456,9 +7491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -7485,7 +7520,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7568,7 +7603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -7597,7 +7632,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7880,7 +7915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -7909,7 +7944,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7992,9 +8027,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -8021,7 +8056,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8104,7 +8139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -8133,7 +8168,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8216,9 +8251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -8245,7 +8280,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8284,6 +8319,92 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304515841}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1312974308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1854607626317916, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1312974309}
+  - component: {fileID: 1312974312}
+  - component: {fileID: 1312974311}
+  - component: {fileID: 1312974310}
+  m_Layer: 0
+  m_Name: Main Camera (2)
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1312974309
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4546419349129280, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312974308}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.93, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2000001, z: 0.2000001}
+  m_Children: []
+  m_Father: {fileID: 379249322}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!81 &1312974310
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 81705719663577076, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312974308}
+  m_Enabled: 1
+--- !u!124 &1312974311
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 124241335150538896, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312974308}
+  m_Enabled: 1
+--- !u!20 &1312974312
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 20770238875629638, guid: 93e896ce52b9386469f3397803b7afcf,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1312974308}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.60294116, g: 0.46107265, b: 0.46107265, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 19.931538
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1317871844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,7 +8449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -8357,7 +8478,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8440,7 +8561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -8469,7 +8590,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8552,7 +8673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -8581,7 +8702,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8664,9 +8785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -8693,7 +8814,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8776,9 +8897,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -8805,7 +8926,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8888,7 +9009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -8917,7 +9038,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9105,7 +9226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9134,7 +9255,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9217,7 +9338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9246,7 +9367,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9329,9 +9450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -9358,7 +9479,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9441,7 +9562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9470,7 +9591,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9553,7 +9674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9582,7 +9703,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9665,7 +9786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9694,7 +9815,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9777,7 +9898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -9806,7 +9927,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9889,9 +10010,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -9918,7 +10039,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10001,7 +10122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10030,7 +10151,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10113,7 +10234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10142,7 +10263,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10225,7 +10346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10254,7 +10375,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10337,7 +10458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10366,7 +10487,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10449,7 +10570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10478,7 +10599,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10561,7 +10682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10590,7 +10711,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10673,7 +10794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10702,7 +10823,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10785,7 +10906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10814,7 +10935,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10966,7 +11087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -10995,7 +11116,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11078,7 +11199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -11107,7 +11228,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11190,9 +11311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -11219,7 +11340,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11448,9 +11569,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -11477,7 +11598,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11560,7 +11681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -11589,7 +11710,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11672,7 +11793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -11701,7 +11822,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11784,7 +11905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -11813,7 +11934,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11896,7 +12017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -11925,7 +12046,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12008,9 +12129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -12037,7 +12158,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12120,7 +12241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12149,7 +12270,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12232,9 +12353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -12261,7 +12382,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12389,7 +12510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12418,7 +12539,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12501,7 +12622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12530,7 +12651,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12613,7 +12734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12642,7 +12763,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12799,7 +12920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12828,7 +12949,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12956,7 +13077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -12985,7 +13106,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13068,7 +13189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13097,7 +13218,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13180,7 +13301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13209,7 +13330,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13292,7 +13413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13321,7 +13442,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13404,7 +13525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13433,7 +13554,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13516,7 +13637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13545,7 +13666,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13628,7 +13749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13657,7 +13778,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13740,7 +13861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 15
+  DeltaThreshold: 2
   DeltaRatio: 0.1
   Size: 2
   KillSize: 0.33
@@ -13769,7 +13890,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13852,9 +13973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleField: {fileID: 85965445}
-  DeltaThreshold: 4
+  DeltaThreshold: 2
   DeltaRatio: 0.1
-  Size: 4
+  Size: 6
   KillSize: 0.33
   speed: 0.02
   MoveToPosition: 1
@@ -13881,7 +14002,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58431dcbe32be9a4bb3a08aa85713d08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
