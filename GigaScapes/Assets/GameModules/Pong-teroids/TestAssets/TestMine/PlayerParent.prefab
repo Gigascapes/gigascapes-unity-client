@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4148915969942270}
   - component: {fileID: 50885706562674074}
   - component: {fileID: 114073149332244636}
+  - component: {fileID: 114947881680483106}
   m_Layer: 0
   m_Name: PlayerParent
   m_TagString: Untagged
@@ -408,3 +409,17 @@ MonoBehaviour:
   shipShield: {fileID: 0}
   TrackMouse: 0
   shieldDown: 0
+--- !u!114 &114947881680483106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958856337618454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107329afcbdf47c4ea278d9854356da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetID: 
+  Type: 
+  ToSync: 0

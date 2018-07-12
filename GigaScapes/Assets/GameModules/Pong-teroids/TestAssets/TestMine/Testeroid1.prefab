@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 50730547956877848}
   - component: {fileID: 58073752138931442}
   - component: {fileID: 114654578051161396}
+  - component: {fileID: 114591624482261876}
   m_Layer: 8
   m_Name: Testeroid1
   m_TagString: Asteroid
@@ -148,6 +149,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.41
+--- !u!114 &114591624482261876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904801543836996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107329afcbdf47c4ea278d9854356da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetID: 
+  Type: 
+  ToSync: 0
 --- !u!114 &114654578051161396
 MonoBehaviour:
   m_ObjectHideFlags: 1
