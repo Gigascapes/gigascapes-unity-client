@@ -59,9 +59,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("s"))
             SpawnMineR();
 
-        //for(int i = 0; i < LocalPlayersObj.Count; i++)
-        //MovePlayer(LocalPlayersObj[i],i);
-        MovePlayer(LocalPlayersObj[0], 0);
+        for(int i = 0; i < LocalPlayersObj.Count; i++)
+        MovePlayer(LocalPlayersObj[i],i);
+        ///MovePlayer(LocalPlayersObj[0], 0);
     }
 
     public void AddToManagedDictionary(string NetID, GameObject obj)

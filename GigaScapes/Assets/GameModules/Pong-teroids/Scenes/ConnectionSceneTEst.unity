@@ -19025,8 +19025,9 @@ MonoBehaviour:
   CurrentLocalPlayers:
   - {fileID: 1398111532}
   - {fileID: 1280213164}
-  TrackMouse: 1
+  TrackMouse: 0
   LocalPlayersObj: []
+  IsMaster: 1
 --- !u!114 &1975009550
 MonoBehaviour:
   m_ObjectHideFlags: 0
