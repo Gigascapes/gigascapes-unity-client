@@ -31,8 +31,7 @@ public class ObjectPooler : MonoBehaviour
 
     void Start ()
     {
-        if (GameManager.Instance.IsMaster == true)
-        {
+      
             poolDictionary = new Dictionary<string, Queue<GameObject>>();
             ManagedObjects = new Dictionary<string, GameObject>();
 
@@ -52,16 +51,8 @@ public class ObjectPooler : MonoBehaviour
                 }
                 poolDictionary.Add(pool.ID, objectPool);
             }
-        }
-        else
-        {
-            poolDictionary = new Dictionary<string, Queue<GameObject>>();
-            //ManagedObjects = whatever;
-
-            
-        }
-	}
-	
+    }
+       
 
 	public GameObject SpawnFromPool(string tag, Vector2 position)
     {
